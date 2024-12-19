@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SmartCards.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -18,14 +19,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li> *@
-                    </ul>
+                    <form class="d-flex mx-auto" style="width: 40%;" role="search">
+                        <div class="input-group">
+                            <button type="submit" class="btn input-group-text bg-white border-0">
+                                <i class="fa fa-search text-secondary"></i>
+                            </button>
+                            <input class="form-control border-0" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+                        </div>
+                    </form>
+                    <partial name="_LoginPartial"/>
                 </div>
             </div>
         </nav>
