@@ -1,0 +1,118 @@
+﻿@{
+	ViewData["Title"] = "Tạo học phần mới | SmartCards";
+}
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/createDeck.css" />
+}
+
+<style>
+    body {
+        background: white;
+    }
+</style>
+
+<div class="container">
+    <h4>Nhập dữ liệu</h4>
+    <p>Chép và dán dữ liệu ở đây (từ Word, Excel, Google Docs, v.v.)</p>
+    <textarea class="form-control mb-4 term-defi-input" rows="6"
+              placeholder="Từ 1 Định nghĩa 1&#10;Từ 2 Định nghĩa 2&#10;Từ 3 Định nghĩa 3"></textarea>
+
+    <div class="row mb-3">
+        <div class="col-md-3 fw-bold">
+            <h5 class="fw-bold">Giữa thuật ngữ và định nghĩa</h5>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="separator" id="tab" checked>
+                <label class="form-check-label" for="tab">Tab</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="separator" id="comma">
+                <label class="form-check-label" for="comma">Phẩy</label>
+            </div>
+            <div class="form-check mb-2 d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="separator" id="custom">
+                <input type="text" class="form-control bg-light" style="width: 250px;" placeholder="-" 
+                    id="custom-separator">
+            </div>
+        </div>
+        <div class="col-md-3 fw-bold">
+            <h5 class="fw-bold">Giữa các thẻ</h5>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="tag-separator" id="newline" checked>
+                <label class="form-check-label" for="newline">Dòng mới</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="tag-separator" id="comma-tags">
+                <label class="form-check-label" for="comma-tags">Chấm phẩy</label>
+            </div>
+            <div class="form-check mb-2 d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="tag-separator" id="custom-tags">
+                <input type="text" class="form-control bg-light" style="width: 250px;" placeholder="\n\n"
+                       id="custom-tag-separator">
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần Xem trước -->
+    <!-- <div class="row mb-4">
+        <h6>Xem trước</h6>
+        <p class="text-muted">0 thẻ</p>
+        <p class="text-muted">Không có nội dung để xem trước</p>
+    </div> -->
+
+    <div class="preview-section">
+        <h6>Xem trước <span class="text-muted">(2 thẻ)</span></h6>
+        <div class="preview-items">
+            <div class="term-item mb-3">
+                <div class="row align-items-center">
+                    <div class="col-1" style="max-width: 50px;">
+                        <span class="text-secondary fw-bold fs-6">1</span>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="custom-input" value="Run" readonly disabled>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="custom-input" value="Chạy" readonly disabled>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-1" style="max-width: 50px;"></div>
+                    <div class="col-5">
+                        <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                    </div>
+                    <div class="col-5">
+                        <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="term-item mb-3">
+                <div class="row align-items-center">
+                    <div class="col-1" style="max-width: 50px;">
+                        <span class="text-secondary fw-bold fs-6">2</span>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="custom-input" value="Talk" readonly disabled>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="custom-input" value="Nói" readonly disabled>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-1" style="max-width: 50px;"></div>
+                    <div class="col-5">
+                        <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                    </div>
+                    <div class="col-5">
+                        <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2">
+        <a asp-action="Create" asp-controller="Deck" class="btn btn-outline-secondary">Hủy nhập</a>
+        <button class="btn btn-primary">Nhập</button>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿
+/*CSS này cho trang tạo học phần mới*/
+
+body {
+    background: #f6f7fb;
+}
+
+.circle-button {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    font-size: 15px;
+}
+
+#title::placeholder {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.custom-input {
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid var(--input-border-bottom-color);
+    outline: none;
+    font-size: 16px;
+    padding: 5px 0;
+    border-radius: 0;
+    background: white;
+    color: #282E3E;
+}
+
+    .custom-input:focus {
+        border-bottom: 3px solid var(--yellow-color);
+    }
+
+.term-item {
+    background: white !important;
+}
+
+.btn-outline-secondary {
+    background: white !important;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--btn-secondary-hover-color) !important;
+    color: var(--grey-color);
+}
+
+.add-card:hover {
+    background: var(--btn-secondary-hover-color) !important;
+}
+
+textarea::placeholder {
+    font-weight: 500;
+    color: var(--grey-color);
+}
+
+textarea {
+    resize: none;
+}
+
+.form-check {
+    margin-bottom: 8px;
+}
+
+.form-check-input {
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
+.btn-img {
+    border: 2px dashed !important;
+    border-color: ghostwhite !important;
+}
+
+.btn-img:hover {
+    .icon-img
+    {
+        color: var(--yellow-color);
+    }
+}

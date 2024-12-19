@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace SmartCards.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

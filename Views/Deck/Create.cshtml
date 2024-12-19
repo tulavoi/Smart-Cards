@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Tạo học phần mới | SmartCards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/createDeck.css" />
+}
+
+<div class="container">
+    <div class="p-4">
+        <form method="post" asp-action="Create" asp-controller="Flashcard">
+            <div class="row mb-4">
+                <div class="col-6">
+                    <h2><strong>Tạo một học phần mới</strong></h2>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-end gap-3">
+                        <button class="btn btn-outline-secondary">Tạo</button>
+                        <button class="btn btn-primary">Tạo và ôn luyện</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Title -->
+            <div class="mb-3">
+                <input type="text" class="form-control border-0 rounded-3" style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"'>
+            </div>
+
+            <!-- Input Description -->
+            <div class="mb-4">
+                <textarea class="form-control border-0 rounded-3" id="description" rows="3" placeholder="Thêm mô tả..."></textarea>
+            </div>
+
+            <!-- Button Options -->
+            <div class="row justify-content-between">
+                <div class="col-8 mb-4 d-flex gap-3">
+                    <a class="btn btn-outline-secondary" asp-action="Import" asp-controller="Flashcard">
+                        <i class="fa-solid fa-plus"></i> Nhập
+                    </a>
+
+                    <button class="btn btn-outline-secondary"><i class="fa-solid fa-plus"></i> Thêm sơ đồ</button>
+                    <button class="btn btn-outline-secondary">Tạo từ ghi chú</button>
+                </div>
+
+                <div class="col-4 mb-4 gap-3 d-flex justify-content-end">
+                    <button class="btn btn-outline-secondary circle-button rounded-circle"><i class="fa-solid fa-gear"></i></button>
+                    <button class="btn btn-outline-secondary circle-button rounded-circle"><i class="fa-solid fa-right-left"></i></button>
+                </div>
+            </div>
+
+            <!-- Terms and Definitions -->
+            <div id="terms-section">
+                <div class="term-item mb-3 border-0 rounded-3 p-3">
+                    <div class="row align-items-center">
+                        <div class="col mb-3">
+                            <span class="text-secondary fw-bold fs-6">1</span>
+                            <hr />
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="custom-input">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="custom-input">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                            </div>
+                            <div class="col-2 text-end">
+                                <button class="btn-img btn btn-light border">
+                                    <i class="icon-img fa-regular fa-image"></i><br />
+                                    Hình ảnh
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="term-item mb-3 border-0 rounded-3 p-3">
+                    <div class="row align-items-center">
+                        <div class="col mb-3">
+                            <span id="term-item-count" class="text-secondary fw-bold fs-6">2</span>
+                            <hr />
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="custom-input">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="custom-input">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                            </div>
+                            <div class="col-2 text-end">
+                                <button class="btn-img btn btn-light border">
+                                    <i class="icon-img fa-regular fa-image"></i><br />
+                                    Hình ảnh
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <button class="term-item mb-3 border-0 rounded-3 p-3 w-100 text-start add-card">
+                <div class="row align-items-center">
+                    <span class="fw-bold text-secondary"><i class="fa-solid fa-plus"></i> Thêm thẻ</span>
+                </div>
+            </button>
+
+            <!-- Actions -->
+            <div class="mt-4 d-flex justify-content-end gap-3">
+                <button class="btn btn-outline-secondary">Tạo</button>
+                <button class="btn btn-primary">Tạo và ôn luyện</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/js/createDeck.js"></script>
