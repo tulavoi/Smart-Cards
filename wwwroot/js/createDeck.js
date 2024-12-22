@@ -30,3 +30,4 @@
                 </div>`;
     termsSection.insertAdjacentHTML('beforeend', newCard);
 });
+
