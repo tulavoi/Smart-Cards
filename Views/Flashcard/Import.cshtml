@@ -1,4 +1,6 @@
-﻿@{
+﻿@using SmartCards.DTOs.Flashcard
+@model FlashcardDTO
+@{
 	ViewData["Title"] = "Tạo học phần mới | SmartCards";
 }
 
@@ -53,19 +55,29 @@
         </div>
     </div>
 
-    <div class="preview-section">
-        <h6>Xem trước <span class="text-muted" id="count-card">0 thẻ</span></h6>
-        <p class="text-muted" id="none-preview-items">Không có nội dung để xem trước</p>
+    <form asp-action="Import" asp-controller="Flashcard" method="post">
+        <div class="preview-section">
+            <h6>Xem trước <span class="text-muted" id="count-card">0 thẻ</span></h6>
+            <p class="text-muted" id="none-preview-items">Không có nội dung để xem trước</p>
 
-        <div id="preview-items">
-            <!-- chứa các term definition-->
-        </div> 
-    </div>
+            <div id="preview-items">
+                <!-- chứa các term definition-->
+               @*  <div class="col-5">
+                    <input type="text" class="custom-input" id="term-input" value="Run" readonly disabled>
+                    <input type="hidden" class="custom-input" name="flashcards[0].Term" value="Run">
+                </div>
+                <div class="col-5">
+                    <input type="text" class="custom-input" id="defi-input" value="Chay" readonly disabled>
+                    <input type="hidden" class="custom-input" name="flashcards[0].Definition" value="Chay">
+                </div> *@
+            </div>
+        </div>
 
-    <div class="d-flex justify-content-end gap-2">
-        <a asp-action="Create" asp-controller="Deck" class="btn btn-outline-secondary">Hủy nhập</a>
-        <button class="btn btn-primary" id="process-btn" >Nhập</button>
-    </div>
+        <div class="d-flex justify-content-end gap-2">
+            <a asp-action="Create" asp-controller="Deck" class="btn btn-outline-secondary">Hủy nhập</a>
+            <button type="submit" class="btn btn-primary" id="process-btn">Nhập</button>
+        </div>
+    </form>
 </div>
 
 <script src="~/js/importFlashcard.js"></script>

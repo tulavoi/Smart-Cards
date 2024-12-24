@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using SmartCards.Models;
+using static NuGet.Packaging.PackagingConstants;
 
 namespace SmartCards.Areas.Identity.Data;
 
@@ -10,6 +12,7 @@ namespace SmartCards.Areas.Identity.Data;
 public class AppUser : IdentityUser
 {
     public string AvatarFileName { get; set; } = string.Empty;
-
+    public List<Course> Courses { get; set; } = new List<Course>();
+    public List<Folder> Folders { get; set; } = new List<Folder>();
 }
 

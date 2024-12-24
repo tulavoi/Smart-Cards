@@ -1,4 +1,5 @@
-﻿
+﻿@using SmartCards.DTOs.Deck
+@model CreateDeckRequestDTO
 @{
     ViewData["Title"] = "Tạo học phần mới | SmartCards";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,8 +17,8 @@
                 </div>
                 <div class="col-6">
                     <div class="d-flex justify-content-end gap-3">
-                        <button class="btn btn-outline-secondary">Tạo</button>
-                        <button class="btn btn-primary">Tạo và ôn luyện</button>
+                        <button type="submit" class="btn btn-outline-secondary">Tạo</button>
+                        <button type="submit" class="btn btn-primary">Tạo và ôn luyện</button>
                     </div>
                 </div>
             </div>
@@ -100,8 +101,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
             <button class="term-item mb-3 border-0 rounded-3 p-3 w-100 text-start add-card">
@@ -112,8 +111,8 @@
 
             <!-- Actions -->
             <div class="mt-4 d-flex justify-content-end gap-3">
-                <button class="btn btn-outline-secondary">Tạo</button>
-                <button class="btn btn-primary">Tạo và ôn luyện</button>
+                <button type="submit" class="btn btn-outline-secondary">Tạo</button>
+                <button type="submit" class="btn btn-primary">Tạo và ôn luyện</button>
             </div>
         </form>
     </div>

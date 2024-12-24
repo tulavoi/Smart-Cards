@@ -16,6 +16,7 @@ namespace SmartCards.Controllers
 
         public IActionResult Create()
         {
+
             return View();
         }
     }

@@ -90,9 +90,11 @@
                             </div>
                             <div class="col-5">
                                 <input type="text" class="custom-input" id="term-input" value="${key}" readonly disabled>
+                                <input type="hidden" class="custom-input" name="flashcards[${count - 1}].Term" value="${key}">
                             </div>
                             <div class="col-5">
                                 <input type="text" class="custom-input" id="defi-input" value="${value}" readonly disabled>
+                                <input type="hidden" class="custom-input" name="flashcards[${count - 1}].Definition" value="${key}">
                             </div>
                         </div>
                         <div class="row align-items-center">
