@@ -1,23 +1,8 @@
-﻿@using SmartCards.DTOs.Flashcard
-@model FlashcardDTO
-@{
-	ViewData["Title"] = "Tạo học phần mới | SmartCards";
-}
-
-@section Styles {
-	<link rel="stylesheet" href="~/css/createDeck.css" />
-}
-
-<style>
-    body {
-        background: white;
-    }
-</style>
-
-<div class="container">
+﻿
+<div class="container import-flashcards-container" style="display: none;">
     <h4>Nhập dữ liệu</h4>
     <p>Chép và dán dữ liệu ở đây (từ Word, Excel, Google Docs, v.v.)</p>
-    <textarea class="form-control mb-4 term-defi-input" rows="6"
+    <textarea class="form-control mb-4 term-defi-textarea" rows="6"
               placeholder=""></textarea>
 
     <div class="row mb-3">
@@ -33,8 +18,8 @@
             </div>
             <div class="form-check mb-2 d-flex align-items-center">
                 <input class="form-check-input me-2" type="radio" name="separator" id="custom">
-                <input type="text" class="form-control bg-light" style="width: 250px;" placeholder="-" 
-                    id="custom-separator">
+                <input type="text" class="form-control bg-light" style="width: 250px;" placeholder="-"
+                       id="custom-separator">
             </div>
         </div>
         <div class="col-md-3 fw-bold">
@@ -55,29 +40,19 @@
         </div>
     </div>
 
-    <form asp-action="Import" asp-controller="Flashcard" method="post">
+    <form method="post">
         <div class="preview-section">
             <h6>Xem trước <span class="text-muted" id="count-card">0 thẻ</span></h6>
             <p class="text-muted" id="none-preview-items">Không có nội dung để xem trước</p>
 
             <div id="preview-items">
                 <!-- chứa các term definition-->
-               @*  <div class="col-5">
-                    <input type="text" class="custom-input" id="term-input" value="Run" readonly disabled>
-                    <input type="hidden" class="custom-input" name="flashcards[0].Term" value="Run">
-                </div>
-                <div class="col-5">
-                    <input type="text" class="custom-input" id="defi-input" value="Chay" readonly disabled>
-                    <input type="hidden" class="custom-input" name="flashcards[0].Definition" value="Chay">
-                </div> *@
             </div>
         </div>
 
         <div class="d-flex justify-content-end gap-2">
-            <a asp-action="Create" asp-controller="Deck" class="btn btn-outline-secondary">Hủy nhập</a>
-            <button type="submit" class="btn btn-primary" id="process-btn">Nhập</button>
+            <button type="button" class="btn btn-outline-secondary" id="cancel-import">Hủy nhập</button>
+            <button type="button" class="btn btn-primary" id="import-btn">Nhập</button>
         </div>
     </form>
 </div>
-
-<script src="~/js/importFlashcard.js"></script>

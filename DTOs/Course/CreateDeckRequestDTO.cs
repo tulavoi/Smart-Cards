@@ -13,6 +13,6 @@ namespace SmartCards.DTOs.Deck
         public string Password { get; set; } = string.Empty;
 		public int ViewPermissionId { get; set; }
 		public int EditPermissionId { get; set; }
-        List<FlashcardDTO>? Flashcards { get; set; }
+        public List<FlashcardDTO>? Flashcards { get; set; }
     }
 }

@@ -70,7 +70,7 @@
 
     function renderPreviewItems(map) {
         var fullHtml = "";
-        var count = 1;
+        var count = 0;
 
         for (const [key, value] of map) {
             fullHtml += createPreviewItemsHtml(key, value, count);
@@ -82,19 +82,20 @@
     }
 
     function createPreviewItemsHtml(key, value, count) {
+        console.log(count);
         const termHTML = `
                     <div class="term-item mb-3">
                         <div class="row align-items-center">
                             <div class="col-1" style="max-width: 50px;">
-                                <span class="text-secondary fw-bold fs-6">${count}</span>
+                                <span class="text-secondary fw-bold fs-6">${count+1}</span>
                             </div>
                             <div class="col-5">
                                 <input type="text" class="custom-input" id="term-input" value="${key}" readonly disabled>
-                                <input type="hidden" class="custom-input" name="flashcards[${count - 1}].Term" value="${key}">
+                                <input type="hidden" class="custom-input" name="flashcardsDTO[${count}].Term" value="${key}">
                             </div>
                             <div class="col-5">
                                 <input type="text" class="custom-input" id="defi-input" value="${value}" readonly disabled>
-                                <input type="hidden" class="custom-input" name="flashcards[${count - 1}].Definition" value="${key}">
+                                <input type="hidden" class="custom-input" name="flashcardsDTO[${count}].Definition" value="${key}">
                             </div>
                         </div>
                         <div class="row align-items-center">
@@ -107,6 +108,7 @@
                             </div>
                         </div>
                     </div>`;
+        console.log(count);
         return termHTML;
     }
 
