@@ -1,6 +1,6 @@
 ﻿namespace SmartCards.Interfaces
 {
-    public interface IDeckRepository
+    public interface ICourseRepository
     {
 
     }

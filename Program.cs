@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmartCards.Areas.Identity.Data;
+using SmartCards.Interfaces;
+using SmartCards.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,9 @@ builder.Services.AddAuthentication()
     //options.CallbackPath = "/login";
 });
 builder.Services.AddAuthorization();
+
+// Đăng ký service cho interfaces
+builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 
 var app = builder.Build();
 

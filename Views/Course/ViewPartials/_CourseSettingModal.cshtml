@@ -1,0 +1,45 @@
+﻿<div class="modal fade" tabindex="-1" id="course-setting-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Tùy chọn</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body custom-modal-body row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <h6 class="fw-bold">HIỂN THỊ VỚI</h6>
+                        <select name="ViewPermissionId" id="view-per-select" class="form-select my-2">
+                            @foreach (var permission in ViewBag.ViewPermissions)
+                            {
+                                <option value="@permission.Id" data-description="@permission.Description">
+                                    @permission.Name
+                                </option>
+                            }
+                        </select>
+                        <p class="text-muted" id="view-per-description"></p>
+                        <input type="password" placeholder="Tạo mật khẩu" id="view-per-course-password-input" class="course-password-input" name="password">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <h6 class="fw-bold">AI CÓ THỂ SỬA</h6>
+                        <select name="EditPermissionId" id="edit-per-select" class="form-select my-2">
+                            @foreach (var permission in ViewBag.EditPermissions)
+                            {
+                                <option value="@permission.Id" data-description="@permission.Description">
+                                    @permission.Name
+                                </option>
+                            }
+                        </select>
+                        <p class="text-muted" id="edit-per-description"></p>
+                        <input type="password" placeholder="Tạo mật khẩu" id="edit-per-course-password-input" class="course-password-input" name="password">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-save btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

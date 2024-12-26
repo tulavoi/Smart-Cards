@@ -226,11 +226,11 @@ namespace SmartCards.Migrations
                 columns: new[] { "Id", "Description", "IsEdit", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Chỉ những người có mật khẩu mới có thể sử dụng học phần này", false, "Người có mật khẩu" },
-                    { 2, "Chỉ tôi mới có thể sử dụng học phần này", false, "Chỉ tôi" },
-                    { 3, "Mọi người đều có thể sử dụng học phần này", false, "Mọi người" },
-                    { 4, "Chỉ những người có mật khẩu mới có thể chỉnh sửa học phần này", true, "Người có mật khẩu" },
-                    { 5, "Chỉ tôi mới có thể chỉnh sửa học phần này", true, "Chỉ tôi" }
+                    { 1, "Mọi người đều có thể sử dụng học phần này", false, "Mọi người" },
+                    { 2, "Chỉ những người có mật khẩu mới có thể sử dụng học phần này", false, "Người có mật khẩu" },
+                    { 3, "Chỉ tôi mới có thể sử dụng học phần này", false, "Chỉ tôi" },
+                    { 4, "Chỉ tôi mới có thể chỉnh sửa học phần này", true, "Chỉ tôi" },
+                    { 5, "Chỉ những người có mật khẩu mới có thể chỉnh sửa học phần này", true, "Người có mật khẩu" }
                 });
 
             migrationBuilder.InsertData(
