@@ -2,7 +2,7 @@
 /*CSS này cho trang tạo học phần mới*/
 
 body {
-    background: #f6f7fb;
+    background: var(--bg-color-grey);
 }
 
 .circle-button {
@@ -29,9 +29,9 @@ body {
     color: #282E3E;
 }
 
-    .custom-input:focus {
-        border-bottom: 3px solid var(--yellow-color);
-    }
+.custom-input:focus {
+    border-bottom: 3px solid var(--yellow-color);
+}
 
 .term-item {
     background: white !important;
