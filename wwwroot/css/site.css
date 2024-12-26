@@ -32,3 +32,7 @@ body {
 .dropdown-toggle::after {
     display: none; /* Ẩn dấu mũi tên */
 }
+
+.btn:focus, .btn:checked {
+    box-shadow: none;
+}

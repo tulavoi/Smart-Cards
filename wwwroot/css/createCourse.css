@@ -33,6 +33,22 @@ body {
     border-bottom: 3px solid var(--yellow-color);
 }
 
+.course-password-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px 0;
+    border-radius: 5px;
+    background: var(--bg-color-grey);
+    color: #282E3E;
+    padding: 0.5rem 1rem;
+}
+
+.course-password-input:focus {
+    border-bottom: 3px solid var(--grey-color);
+}
+
 .term-item {
     background: white !important;
 }
@@ -81,4 +97,52 @@ textarea {
     {
         color: var(--yellow-color);
     }
+}
+
+.course-setting-dropdown {
+    background: white;
+    color: var(--bs-primary);
+    border-radius: 8px;
+    width: 30%;
+}
+
+#course-setting-modal .modal-content {
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#course-setting-modal .modal-header {
+    border-bottom: none;
+}
+
+/* Tùy chỉnh giao diện của select */
+.form-select {
+    background-color: #fff;
+    appearance: none;
+    color: var(--bs-primary);
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    width: 60%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.form-select:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.form-select:hover {
+    background-color: #d0e7ff;
+    border-color: var(--bs-primary);
+}
+
+.form-select option {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    border: none;
 }

@@ -161,11 +161,9 @@
                             </div>
                             <div class="col-5">
                                 <input type="text" class="custom-input" id="term-input" value="${key}" readonly disabled>
-                                <input type="hidden" class="custom-input" name="flashcardsDTO[${count}].Term" value="${key}">
                             </div>
                             <div class="col-5">
                                 <input type="text" class="custom-input" id="defi-input" value="${value}" readonly disabled>
-                                <input type="hidden" class="custom-input" name="flashcardsDTO[${count}].Definition" value="${key}">
                             </div>
                         </div>
                         <div class="row align-items-center">
@@ -256,4 +254,38 @@
             </div>`
         return tempHtml;
     }
+
+    function updateDescription(selectId, descriptionId, passwordInputClass) {
+        const select = document.getElementById(selectId);
+
+        // Lấy option đc chọn
+        const selectedOption = select.options[select.selectedIndex];
+
+        if (selectedOption.innerText.trim() == "Người có mật khẩu") {
+            document.querySelector(passwordInputClass).style.display = 'block';
+        } else {
+            document.querySelector(passwordInputClass).style.display = 'none';
+        }
+
+        // Lấy description từ selectId
+        const des = selectedOption.getAttribute("data-description");
+
+        // Gán description vào thẻ <p>
+        const perDescription = document.getElementById(descriptionId);
+        perDescription.innerText = des;
+    }
+
+    document.getElementById('view-per-select').addEventListener("change", function() {
+        updateDescription('view-per-select', 'view-per-description', '#view-per-course-password-input');
+    });
+
+    document.getElementById('edit-per-select').addEventListener("change", function() {
+        updateDescription('edit-per-select', 'edit-per-description', '#edit-per-course-password-input');
+    })
+
+    // Gán sẵn description vào thẻ <p> khi trang vừa tải
+    window.addEventListener('DOMContentLoaded', () => {
+        updateDescription('view-per-select', 'view-per-description', '#view-per-course-password-input');
+        updateDescription('edit-per-select', 'edit-per-description', '#edit-per-course-password-input');
+    });
 });

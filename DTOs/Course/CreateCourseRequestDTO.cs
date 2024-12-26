@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SmartCards.DTOs.Deck
 {
-    public class CreateDeckRequestDTO
+    public class CreateCourseRequestDTO
     {
         [Required]
         [MaxLength(50, ErrorMessage = "Tối đa 50 ký tự")]

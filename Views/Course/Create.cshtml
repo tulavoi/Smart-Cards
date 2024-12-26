@@ -1,5 +1,5 @@
 ﻿@using SmartCards.DTOs.Deck
-@model CreateDeckRequestDTO
+@model CreateCourseRequestDTO
 @{
     ViewData["Title"] = "Tạo học phần mới | SmartCards";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -45,8 +45,14 @@
                 </div>
 
                 <div class="col-4 mb-4 gap-3 d-flex justify-content-end">
-                    <button class="btn btn-outline-secondary circle-button rounded-circle"><i class="fa-solid fa-gear"></i></button>
-                    <button class="btn btn-outline-secondary circle-button rounded-circle"><i class="fa-solid fa-right-left"></i></button>
+                    <button type="button" class="btn btn-outline-secondary circle-button rounded-circle" data-bs-toggle="modal" data-bs-target="#course-setting-modal">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                    @await Html.PartialAsync("ViewPartials/_CourseSettingModal")
+
+                    <button type="button" class="btn btn-outline-secondary circle-button rounded-circle">
+                        <i class="fa-solid fa-right-left"></i>
+                    </button>
                 </div>
             </div>
 
@@ -69,7 +75,6 @@
         </form>
     </div>
 </div>
-
 @await Html.PartialAsync("ViewPartials/_ImportFlashcardsPartial")
 
 <script src="~/js/createCourse.js"></script>
