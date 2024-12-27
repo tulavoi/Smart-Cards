@@ -9,71 +9,83 @@
 }
 
 <div class="container create-course-container">
-    <div class="p-4">
-        <form method="post" asp-action="Create" asp-controller="Course">
-            <div class="row mb-4">
-                <div class="col-6">
-                    <h2><strong>Tạo một học phần mới</strong></h2>
-                </div>
-                <div class="col-6">
-                    <div class="d-flex justify-content-end gap-3">
-                        <button type="submit" class="btn btn-outline-secondary">Tạo</button>
-                        <button type="submit" class="btn btn-primary">Tạo và ôn luyện</button>
-                    </div>
-                </div>
+    <form method="post" asp-action="Create" asp-controller="Course">
+        <div class="row mb-4" id="course-form-header">
+            <div class="col-6">
+                <h2><strong>Tạo một học phần mới</strong></h2>
             </div>
-
-            <!-- Input Title -->
-            <div class="mb-3">
-                <input type="text" class="form-control border-0 rounded-3" style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"'>
-            </div>
-
-            <!-- Input Description -->
-            <div class="mb-4">
-                <textarea class="form-control border-0 rounded-3" id="description" rows="3" placeholder="Thêm mô tả..."></textarea>
-            </div>
-
-            <!-- Button Options -->
-            <div class="row justify-content-between">
-                <div class="col-8 mb-4 d-flex gap-3">
-                    <button type="button" class="btn btn-outline-secondary" id="open-import-flashcards">
-                        <i class="fa-solid fa-plus"></i> Nhập
+            <div class="col-6">
+                <div class="d-flex justify-content-end gap-3">
+                    <button type="submit" asp-action="Create" asp-controller="Course"
+                            id="create-course-btn" class="btn btn-outline-secondary">
+                        Tạo
                     </button>
-
-                    <button class="btn btn-outline-secondary"><i class="fa-solid fa-plus"></i> Thêm sơ đồ</button>
-                    <button class="btn btn-outline-secondary">Tạo từ ghi chú</button>
-                </div>
-
-                <div class="col-4 mb-4 gap-3 d-flex justify-content-end">
-                    <button type="button" class="btn btn-outline-secondary circle-button rounded-circle" data-bs-toggle="modal" data-bs-target="#course-setting-modal">
-                        <i class="fa-solid fa-gear"></i>
-                    </button>
-                    @await Html.PartialAsync("ViewPartials/_CourseSettingModal")
-
-                    <button type="button" class="btn btn-outline-secondary circle-button rounded-circle">
-                        <i class="fa-solid fa-right-left"></i>
-                    </button>
+                    <button type="submit" id="create-review-course-btn" class="btn btn-primary py-2 px-4">Tạo và ôn luyện</button>
                 </div>
             </div>
+        </div>
 
-            <!-- Terms and Definitions -->
-            <div id="terms-section">
-                @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial")
+        <!-- Input Title -->
+        <div class="mb-3">
+            <input type="text" class="form-control border-0 rounded-3" style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"'>
+        </div>
+
+        <!-- Input Description -->
+        <div class="mb-4">
+            <textarea class="form-control border-0 rounded-3" id="description" rows="3" placeholder="Thêm mô tả..."></textarea>
+        </div>
+
+        <!-- Button Options -->
+        <div class="row justify-content-between">
+            <div class="col-8 mb-4 d-flex gap-3">
+                <button type="button" class="btn btn-outline-secondary" id="open-import-flashcards">
+                    <i class="fa-solid fa-plus"></i> Nhập
+                </button>
+
+                <button class="btn btn-outline-secondary"><i class="fa-solid fa-plus"></i> Thêm sơ đồ</button>
+                <button class="btn btn-outline-secondary">Tạo từ ghi chú</button>
             </div>
 
-            <button type="button" class="term-item mb-3 border-0 rounded-3 p-3 w-100 text-start add-card">
-                <div class="row align-items-center">
-                    <span class="fw-bold text-secondary"><i class="fa-solid fa-plus"></i> Thêm thẻ</span>
-                </div>
+            <div class="col-4 mb-4 gap-3 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline-secondary circle-button rounded-circle" data-bs-toggle="modal" data-bs-target="#course-setting-modal">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                @await Html.PartialAsync("ViewPartials/_CourseSettingModal")
+
+                <button type="button" class="btn btn-outline-secondary circle-button rounded-circle">
+                    <i class="fa-solid fa-right-left"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Thông báo lỗi ở đây -->
+        <div id="error-message">
+
+        </div>
+
+        <!-- Terms and Definitions -->
+        <div id="terms-section">
+            @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial")
+        </div>
+
+        <button type="button" class="term-item mb-3 border-0 rounded-3 p-3 w-100 text-start add-card">
+            <div class="row align-items-center">
+                <span class="fw-bold text-secondary"><i class="fa-solid fa-plus"></i> Thêm thẻ</span>
+            </div>
+        </button>
+
+        <!-- Actions -->
+        <div class="mt-4 d-flex justify-content-end gap-3">
+            <button type="submit" asp-action="Create" asp-controller="Course" 
+                    id="create-course-btn" class="btn btn-outline-secondary">
+                Tạo
             </button>
 
-            <!-- Actions -->
-            <div class="mt-4 d-flex justify-content-end gap-3">
-                <button type="submit" class="btn btn-outline-secondary">Tạo</button>
-                <button type="submit" class="btn btn-primary">Tạo và ôn luyện</button>
-            </div>
-        </form>
-    </div>
+            <button type="submit" id="create-review-course-btn" class="btn btn-primary">
+                Tạo và ôn luyện
+            </button>
+        </div>
+    </form>
 </div>
 @await Html.PartialAsync("ViewPartials/_ImportFlashcardsPartial")
 

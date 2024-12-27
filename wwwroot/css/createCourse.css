@@ -89,7 +89,7 @@ textarea {
 
 .btn-img {
     border: 2px dashed !important;
-    border-color: ghostwhite !important;
+    border-color: var(--light-grey-color) !important;
 }
 
 .btn-img:hover {
@@ -97,6 +97,11 @@ textarea {
     {
         color: var(--yellow-color);
     }
+}
+
+.btn-img:focus {
+    border: 2px dashed !important;
+    border-color: var(--light-grey-color) !important;
 }
 
 .course-setting-dropdown {
@@ -145,4 +150,39 @@ textarea {
     color: #495057;
     background-color: #fff;
     border: none;
+}
+
+.fixed-top {
+    padding: 25px 120px;
+    background: white;
+    z-index: 1030;
+}
+
+.preview-section {
+    max-height: calc(50vh - 20px); /* 20px là chiều cao của thanh nút */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px; /* Đảm bảo nội dung không bị che khuất bởi thanh nút */
+}
+
+.fixed-bottom {
+    z-index: 1030;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#btn-choose-language {
+    color: var(--light-grey-color);
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    display: none;
+}
+
+.btn-choose-language:focus {
+    color: var(--yellow-color);
+}
+
+.btn-trash {
+    color: var(--light-grey-color);
+    font-size: small;
 }
