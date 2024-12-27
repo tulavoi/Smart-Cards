@@ -6,23 +6,33 @@
         const termItems = document.querySelectorAll('.term-item'); // Lấy tất cả term-item hiện có
         const newIndex = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
 
-        const newCard = `<div class="term-item mb-3 border-0 rounded-3 p-3">
+        const newCard = `<div class="term-item mb-3 border-0 rounded-3 py-2 px-4">
                             <div class="row align-items-center">
-                                <div class="col mb-3">
-                                    <span class="text-secondary fw-bold fs-6 term-item-count">${newIndex}</span>
-                                    <hr />
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <input type="text" class="custom-input">
-                                        <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                                <div class="col border-bottom">
+                                    <div class="col mb-2 d-flex align-items-center justify-content-between">
+                                        <span class="text-secondary fw-bold fs-6 term-item-count">${newIndex}</span>
+                                        <button type="button" class="btn btn-trash ms-auto">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
                                     </div>
-                                    <div class="col-5">
-                                        <input type="text" class="custom-input">
-                                        <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                                </div>
+                                <div class="row my-3 term-def-input-row">
+                                    <div class="col-5 pt-3">
+                                        <input type="text" class="custom-input term-defi-input" name="Term">
+                                        <div class="d-flex align-items-center justify-content-between mt-2">
+                                            <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                                            <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 pt-3">
+                                        <input type="text" class="custom-input term-defi-input" name="Definition">
+                                        <div class="d-flex align-items-center justify-content-between  mt-2">
+                                            <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                                            <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                                        </div>
                                     </div>
                                     <div class="col-2 text-end">
-                                        <button class="btn-img btn btn-light border">
+                                        <button type="button" class="btn-img btn btn-light bg-white">
                                             <i class="icon-img fa-regular fa-image"></i><br />
                                             Hình ảnh
                                         </button>
@@ -228,23 +238,33 @@
 
     function createTermsSectionHtml(key, value, count){
         const tempHtml = `
-            <div class="term-item mb-3 border-0 rounded-3 p-3">
+            <div class="term-item mb-3 border-0 rounded-3 py-2 px-4">
                 <div class="row align-items-center">
-                    <div class="col mb-3">
-                        <span class="text-secondary fw-bold fs-6 term-item-count">${count + 1}</span>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <input type="text" class="custom-input term-defi-input" value="${key}" name="Term">
-                            <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                    <div class="col border-bottom">
+                        <div class="col mb-2 d-flex align-items-center justify-content-between">
+                            <span class="text-secondary fw-bold fs-6 term-item-count">${count + 1}</span>
+                            <button type="button" class="btn btn-trash ms-auto">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
-                        <div class="col-5">
+                    </div>
+                    <div class="row my-3 term-def-input-row">
+                        <div class="col-5 pt-3">
+                            <input type="text" class="custom-input term-defi-input" value="${key}" name="Term">
+                            <div class="d-flex align-items-center justify-content-between mt-2">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                                <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                            </div>
+                        </div>
+                        <div class="col-5 pt-3">
                             <input type="text" class="custom-input term-defi-input" value="${value}" name="Definition">
-                            <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                            <div class="d-flex align-items-center justify-content-between  mt-2">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                                <button type="button" id="btn-choose-language" class="bg-white" style="display: none;">CHỌN NGÔN NGỮ</button>
+                            </div>
                         </div>
                         <div class="col-2 text-end">
-                            <button class="btn-img btn btn-light border">
+                            <button type="button" class="btn-img btn btn-light bg-white">
                                 <i class="icon-img fa-regular fa-image"></i><br />
                                 Hình ảnh
                             </button>
@@ -288,4 +308,62 @@
         updateDescription('view-per-select', 'view-per-description', '#view-per-course-password-input');
         updateDescription('edit-per-select', 'edit-per-description', '#edit-per-course-password-input');
     });
+
+    $(window).on('scroll', function () {
+        var scrollTop = $(window).scrollTop();
+        var header = $('#course-form-header');
+
+        // Kiểm tra vị trí cuộn, nếu cuộn xuống thì thêm class fixed-top
+        if (scrollTop > 100) {
+            header.addClass('fixed-top');
+        } else {
+            header.removeClass('fixed-top');
+        }
+    });
+
+    function toggleLanguageButton() {
+        const rows = document.querySelectorAll('.term-def-input-row');
+        rows.forEach(row => {
+            // Lấy các input và button trong mỗi row
+            const termInput = row.querySelector('input[name="Term"]');
+            const definitionInput = row.querySelector('input[name="Definition"]');
+            const btnChooseLanguage = row.querySelectorAll('#btn-choose-language');
+
+            // Hàm hiển thị các nút
+            const showButtons = () => {
+                btnChooseLanguage.forEach(button => {
+                    button.style.display = 'block';
+                });
+            };
+
+            // Hàm ẩn các nút khi mất focus cả hai input
+            const hideButtons = () => {
+                // Kiểm tra nếu cả hai input không được focus
+                if (
+                    !termInput.matches(':focus') &&
+                    !definitionInput.matches(':focus')
+                ) {
+                    btnChooseLanguage.forEach(button => {
+                        button.style.display = 'none';
+                    });
+                }
+            };
+
+            // Thêm sự kiện focus và blur cho từng input
+            termInput.addEventListener('focus', showButtons);
+            definitionInput.addEventListener('focus', showButtons);
+
+            termInput.addEventListener('blur', hideButtons);
+            definitionInput.addEventListener('blur', hideButtons);
+
+            // Ngăn sự kiện blur khi bấm vào btnChooseLanguage
+            btnChooseLanguage.forEach(button => {
+                button.addEventListener('mousedown', (event) => {
+                    event.preventDefault(); // Ngăn sự kiện blur của input khi bấm nút
+                });
+            });
+        });
+    }
+
+    toggleLanguageButton();
 });
