@@ -10,7 +10,7 @@
                             <div class="row align-items-center">
                                 <div class="col border-bottom">
                                     <div class="col mb-2 d-flex align-items-center justify-content-between">
-                                        <span class="text-secondary fw-bold fs-6 term-item-count">${newIndex}</span>
+                                        <span class="text-secondary fw-bold fs-6 term-item-count">@i</span>
                                         <button type="button" class="btn btn-trash ms-auto">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
@@ -21,14 +21,20 @@
                                         <input type="text" class="custom-input term-defi-input" name="Term">
                                         <div class="d-flex align-items-center justify-content-between mt-2">
                                             <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                                            <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                                            @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                                                {
+                                                    InputType = "term"
+                                                })
                                         </div>
                                     </div>
                                     <div class="col-5 pt-3">
                                         <input type="text" class="custom-input term-defi-input" name="Definition">
                                         <div class="d-flex align-items-center justify-content-between  mt-2">
                                             <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                                            <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                                            @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                                                {
+                                                    InputType = "definition"
+                                                })
                                         </div>
                                     </div>
                                     <div class="col-2 text-end">
@@ -41,6 +47,8 @@
                             </div>
                         </div>`;
         termsSection.insertAdjacentHTML('beforeend', newCard);
+
+        bindTrashButtonEvent();
 
         // Cập nhật lại số thứ tự cho tất cả các term-item
         const updatedTermItems = document.querySelectorAll('.term-item-count');
@@ -234,6 +242,7 @@
         }
 
         termsSection.innerHTML = fullHtml;
+        bindTrashButtonEvent();
     }
 
     function createTermsSectionHtml(key, value, count){
@@ -250,17 +259,23 @@
                     </div>
                     <div class="row my-3 term-def-input-row">
                         <div class="col-5 pt-3">
-                            <input type="text" class="custom-input term-defi-input" value="${key}" name="Term">
+                            <input type="text" class="custom-input term-defi-input" name="Term" value="${key}">
                             <div class="d-flex align-items-center justify-content-between mt-2">
                                 <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                                <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                                @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                                    {
+                                        InputType = "term"
+                                    })
                             </div>
                         </div>
                         <div class="col-5 pt-3">
-                            <input type="text" class="custom-input term-defi-input" value="${value}" name="Definition">
+                            <input type="text" class="custom-input term-defi-input" name="Definition" value="${value}">
                             <div class="d-flex align-items-center justify-content-between  mt-2">
                                 <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                                <button type="button" id="btn-choose-language" class="bg-white" style="display: none;">CHỌN NGÔN NGỮ</button>
+                                @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                                    {
+                                        InputType = "definition"
+                                    })
                             </div>
                         </div>
                         <div class="col-2 text-end">
@@ -321,49 +336,45 @@
         }
     });
 
-    function toggleLanguageButton() {
-        const rows = document.querySelectorAll('.term-def-input-row');
-        rows.forEach(row => {
-            // Lấy các input và button trong mỗi row
-            const termInput = row.querySelector('input[name="Term"]');
-            const definitionInput = row.querySelector('input[name="Definition"]');
-            const btnChooseLanguage = row.querySelectorAll('#btn-choose-language');
+    function syncSelectsByType(dataType) {
+        const selects = document.querySelectorAll('#btn-choose-language');
 
-            // Hàm hiển thị các nút
-            const showButtons = () => {
-                btnChooseLanguage.forEach(button => {
-                    button.style.display = 'block';
-                });
-            };
+        // Lắng nghe sự kiện thay đổi trên mỗi select
+        selects.forEach(select => {
+            select.addEventListener('change', event => {
+                const selectedValue = event.target.value; // Lấy giá trị được chọn
+                const dataType = event.target.getAttribute('data-type'); // Lấy data-type của select đã thay đổi
 
-            // Hàm ẩn các nút khi mất focus cả hai input
-            const hideButtons = () => {
-                // Kiểm tra nếu cả hai input không được focus
-                if (
-                    !termInput.matches(':focus') &&
-                    !definitionInput.matches(':focus')
-                ) {
-                    btnChooseLanguage.forEach(button => {
-                        button.style.display = 'none';
-                    });
-                }
-            };
-
-            // Thêm sự kiện focus và blur cho từng input
-            termInput.addEventListener('focus', showButtons);
-            definitionInput.addEventListener('focus', showButtons);
-
-            termInput.addEventListener('blur', hideButtons);
-            definitionInput.addEventListener('blur', hideButtons);
-
-            // Ngăn sự kiện blur khi bấm vào btnChooseLanguage
-            btnChooseLanguage.forEach(button => {
-                button.addEventListener('mousedown', (event) => {
-                    event.preventDefault(); // Ngăn sự kiện blur của input khi bấm nút
+                // Chỉ cập nhật các select có cùng data-type
+                selects.forEach(otherSelect => {
+                    if (otherSelect.getAttribute('data-type') === dataType) {
+                        otherSelect.value = selectedValue;
+                    }
                 });
             });
         });
     }
 
-    toggleLanguageButton();
+    syncSelectsByType("term");       
+    syncSelectsByType("definition");
+
+    // Hàm gắn sự kiện cho các nút btn-trash
+    function bindTrashButtonEvent() {
+        document.querySelectorAll('.btn-trash').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                // Tìm phần tử cha gần nhất có class "term-item"
+                const termItem = btn.closest('.term-item');
+
+                // Xóa phần tử
+                termItem.remove();
+
+                // Cập nhật lại số thứ tự
+                document.querySelectorAll('.term-item').forEach(function (item, index) {
+                    item.querySelector('.term-item-count').textContent = index + 1; // Cập nhật lại số thứ tự bắt đầu từ 1
+                });
+            });
+        });
+    }
+
+    bindTrashButtonEvent();
 });
