@@ -43,6 +43,7 @@ builder.Services.AddAuthorization();
 
 // Đăng ký service cho interfaces
 builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
+builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 
 var app = builder.Build();
 

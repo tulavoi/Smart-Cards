@@ -10,9 +10,13 @@ namespace SmartCards.Controllers
 	public class CourseController : Controller
 	{
 		private readonly IPermissionRepository _permissionRepo;
-        public CourseController(IPermissionRepository permissionRepo)
+		private readonly ILanguageRepository _languageRepo;
+
+        public CourseController(IPermissionRepository permissionRepo,
+            ILanguageRepository languageRepo)
         {
             _permissionRepo = permissionRepo;
+            _languageRepo = languageRepo;
         }
 
         [Route("/create-course")]
@@ -20,6 +24,7 @@ namespace SmartCards.Controllers
 		{
             ViewBag.EditPermissions = await _permissionRepo.GetAllAsync(new PermissionQueryObject { IsEdit = true });
             ViewBag.ViewPermissions = await _permissionRepo.GetAllAsync(new PermissionQueryObject { IsEdit = false });
+			ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
 
 			return View();
 		}

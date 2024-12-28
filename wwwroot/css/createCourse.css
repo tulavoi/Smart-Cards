@@ -172,17 +172,27 @@ textarea {
 
 #btn-choose-language {
     color: var(--light-grey-color);
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: 500;
     border: none;
-    display: none;
+    background: white;
+    margin: 0;
+    padding: 0 0 0 10px;
+    text-align-last: end;
 }
 
-.btn-choose-language:focus {
+#btn-choose-language:focus {
     color: var(--yellow-color);
+}
+
+#btn-choose-language option{
+    font-size: 13px;
+    font-weight: 500;
+    color: black;
 }
 
 .btn-trash {
     color: var(--light-grey-color);
     font-size: small;
 }
+

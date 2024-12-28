@@ -15,14 +15,20 @@
                     <input type="text" class="custom-input term-defi-input" name="Term">
                     <div class="d-flex align-items-center justify-content-between mt-2">
                         <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                        <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                        @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                            {
+                                InputType = "term"
+                            })
                     </div>
                 </div>
                 <div class="col-5 pt-3">
                     <input type="text" class="custom-input term-defi-input" name="Definition">
                     <div class="d-flex align-items-center justify-content-between  mt-2">
                         <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                        <button type="button" id="btn-choose-language" class="bg-white">CHỌN NGÔN NGỮ</button>
+                        @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                            {
+                                InputType = "definition"
+                            })
                     </div>
                 </div>
                 <div class="col-2 text-end">
