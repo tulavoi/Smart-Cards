@@ -64,7 +64,15 @@
 
         <!-- Terms and Definitions -->
         <div id="terms-section">
-            @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial")
+            @for(int i = 1; i < 6; i++)
+            {
+                @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial", new
+                {
+                    count = i,
+                    termValue = "",
+                    defiValue = "",
+                })
+            }
         </div>
 
         <button type="button" class="term-item mb-3 border-0 rounded-3 p-3 w-100 text-start add-card">
