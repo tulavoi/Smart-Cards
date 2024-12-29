@@ -2,52 +2,55 @@
     const termsSection = document.getElementById('terms-section');
 
     // Khi nhán vào Thêm thẻ sẽ thêm 1 html terms-item
-    document.querySelector('.add-card').addEventListener('click', () => {
+    document.querySelector('.add-card').addEventListener('click', addNewCard);
+
+    async function addNewCard() {
         const termItems = document.querySelectorAll('.term-item'); // Lấy tất cả term-item hiện có
         const newIndex = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
 
-        const newCard = `<div class="term-item mb-3 border-0 rounded-3 py-2 px-4">
-                            <div class="row align-items-center">
-                                <div class="col border-bottom">
-                                    <div class="col mb-2 d-flex align-items-center justify-content-between">
-                                        <span class="text-secondary fw-bold fs-6 term-item-count">@i</span>
-                                        <button type="button" class="btn btn-trash ms-auto">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row my-3 term-def-input-row">
-                                    <div class="col-5 pt-3">
-                                        <input type="text" class="custom-input term-defi-input" name="Term">
-                                        <div class="d-flex align-items-center justify-content-between mt-2">
-                                            <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                                            @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
-                                                {
-                                                    InputType = "term"
-                                                })
-                                        </div>
-                                    </div>
-                                    <div class="col-5 pt-3">
-                                        <input type="text" class="custom-input term-defi-input" name="Definition">
-                                        <div class="d-flex align-items-center justify-content-between  mt-2">
-                                            <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                                            @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
-                                                {
-                                                    InputType = "definition"
-                                                })
-                                        </div>
-                                    </div>
-                                    <div class="col-2 text-end">
-                                        <button type="button" class="btn-img btn btn-light bg-white">
-                                            <i class="icon-img fa-regular fa-image"></i><br />
-                                            Hình ảnh
-                                        </button>
-                                    </div>
-                                </div>
+        const termHtml = await getMenuLanguages('term');
+        const defiHtml = await getMenuLanguages('definition');
+
+        const newCard = `
+            <div class="term-item mb-3 border-0 rounded-3 py-2 px-4">
+                <div class="row align-items-center">
+                    <div class="col border-bottom">
+                        <div class="col mb-2 d-flex align-items-center justify-content-between">
+                            <span class="text-secondary fw-bold fs-6 term-item-count">${newIndex}</span>
+                            <button type="button" class="btn btn-trash ms-auto">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row my-3 term-def-input-row">
+                        <div class="col-5 pt-3">
+                            <input type="text" class="custom-input term-defi-input" name="Term">
+                            <div class="d-flex align-items-center justify-content-between mt-2">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
+                                ${termHtml}
                             </div>
-                        </div>`;
+                        </div>
+                        <div class="col-5 pt-3">
+                            <input type="text" class="custom-input term-defi-input" name="Definition">
+                            <div class="d-flex align-items-center justify-content-between  mt-2">
+                                <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
+                                ${defiHtml}
+                            </div>
+                        </div>
+                        <div class="col-2 text-end">
+                            <button type="button" class="btn-img btn btn-light bg-white">
+                                <i class="icon-img fa-regular fa-image"></i><br />
+                                Hình ảnh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+        // Thêm card mới vào khu vực termsSection
         termsSection.insertAdjacentHTML('beforeend', newCard);
 
+        // Gắn lại sự kiện cho nút xóa
         bindTrashButtonEvent();
 
         // Cập nhật lại số thứ tự cho tất cả các term-item
@@ -55,7 +58,18 @@
         updatedTermItems.forEach((item, index) => {
             item.innerText = index + 1; // Số thứ tự bắt đầu từ 1
         });
-    });
+    }
+
+    async function getMenuLanguages(inputType) {
+        try {
+            const response = await fetch(`/Course/GetMenuLanguagesPartial?InputType=${inputType}`);
+            const html = await response.text();
+            return html;
+        }
+        catch (error) {
+            console.error('Error loading menu languages:', error);
+        }
+    }
 
     // Khi nhấn Nhập sẽ hiện lên gd nhập flashcards và ẩn gd tạo course
     document.getElementById('open-import-flashcards').addEventListener('click', () => {

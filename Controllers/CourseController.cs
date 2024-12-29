@@ -19,7 +19,7 @@ namespace SmartCards.Controllers
             _languageRepo = languageRepo;
         }
 
-        [Route("/create-course")]
+        //[Route("/create-course")]
 		public async Task<IActionResult> Create()
 		{
             ViewBag.EditPermissions = await _permissionRepo.GetAllAsync(new PermissionQueryObject { IsEdit = true });
@@ -28,5 +28,23 @@ namespace SmartCards.Controllers
 
 			return View();
 		}
-	}
+
+		// Trả về Html của PartialView
+		[HttpGet]
+		public async Task<IActionResult> GetMenuLanguagesPartial([FromRoute] string inputType) 
+		{
+			ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
+			var model = new { InputType = inputType };
+			return PartialView("~/Views/Course/ViewPartials/_MenuLanguagesPartial.cshtml", model);
+        }
+
+        // Trả về Html của PartialView
+        [HttpGet]
+        public async Task<IActionResult> GetTermDefinitionPartial([FromRoute] string inputType)
+        {
+            ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
+            var model = new { InputType = inputType };
+            return PartialView("~/Views/Course/ViewPartials/_MenuLanguagesPartial.cshtml", model);
+        }
+    }
 }
