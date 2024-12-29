@@ -6,65 +6,23 @@
 
     async function addNewCard() {
         const termItems = document.querySelectorAll('.term-item'); // Lấy tất cả term-item hiện có
-        const newIndex = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
+        const count = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
 
-        const termHtml = await getMenuLanguages('term');
-        const defiHtml = await getMenuLanguages('definition');
-
-        const newCard = `
-            <div class="term-item mb-3 border-0 rounded-3 py-2 px-4">
-                <div class="row align-items-center">
-                    <div class="col border-bottom">
-                        <div class="col mb-2 d-flex align-items-center justify-content-between">
-                            <span class="text-secondary fw-bold fs-6 term-item-count">${newIndex}</span>
-                            <button type="button" class="btn btn-trash ms-auto">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row my-3 term-def-input-row">
-                        <div class="col-5 pt-3">
-                            <input type="text" class="custom-input term-defi-input" name="Term">
-                            <div class="d-flex align-items-center justify-content-between mt-2">
-                                <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                                ${termHtml}
-                            </div>
-                        </div>
-                        <div class="col-5 pt-3">
-                            <input type="text" class="custom-input term-defi-input" name="Definition">
-                            <div class="d-flex align-items-center justify-content-between  mt-2">
-                                <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                                ${defiHtml}
-                            </div>
-                        </div>
-                        <div class="col-2 text-end">
-                            <button type="button" class="btn-img btn btn-light bg-white">
-                                <i class="icon-img fa-regular fa-image"></i><br />
-                                Hình ảnh
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-
-        // Thêm card mới vào khu vực termsSection
-        termsSection.insertAdjacentHTML('beforeend', newCard);
-
-        // Gắn lại sự kiện cho nút xóa
-        bindTrashButtonEvent();
-
-        // Cập nhật lại số thứ tự cho tất cả các term-item
-        const updatedTermItems = document.querySelectorAll('.term-item-count');
-        updatedTermItems.forEach((item, index) => {
-            item.innerText = index + 1; // Số thứ tự bắt đầu từ 1
-        });
-    }
-
-    async function getMenuLanguages(inputType) {
         try {
-            const response = await fetch(`/Course/GetMenuLanguagesPartial?InputType=${inputType}`);
-            const html = await response.text();
-            return html;
+            const respone = await fetch(`/Course/GetTermDefinitionPartial?count=${count}&termValue=&defiValue=`);
+            const newCard = await respone.text();
+
+            // Thêm card mới vào khu vực termsSection
+            termsSection.insertAdjacentHTML('beforeend', newCard);
+
+            // Gắn lại sự kiện cho nút xóa
+            bindTrashButtonEvent();
+
+            // Cập nhật lại số thứ tự cho tất cả các term-item
+            const updatedTermItems = document.querySelectorAll('.term-item-count');
+            updatedTermItems.forEach((item, index) => {
+                item.innerText = index + 1; // Số thứ tự bắt đầu từ 1
+            });
         }
         catch (error) {
             console.error('Error loading menu languages:', error);
@@ -234,11 +192,11 @@
     updatePlaceholder();
     updatePreview();
 
+    // Xử lý event import-btn
     document.getElementById('import-btn').addEventListener('click', () => {
         toggleContainer('.import-flashcards-container', '.create-course-container', '#f6f7fb');
 
         if (termDefinitionMap.size == 0 || ![...termDefinitionMap.keys()].length) return;
-        console.log(termDefinitionMap);
 
         // Xóa các input cũ trong terms-section 
         termsSection.innerHTML = '';
@@ -246,12 +204,12 @@
         renderTermsSection(termDefinitionMap);
     });
 
-    function renderTermsSection(map){
+    async function renderTermsSection(map){
         var fullHtml = "";
         var count = 0;
 
         for (const [key, value] of map) {
-            fullHtml += createTermsSectionHtml(key, value, count);
+            fullHtml += await createTermsSectionHtml(key, value, count);
             count++;
         }
 
@@ -259,49 +217,13 @@
         bindTrashButtonEvent();
     }
 
-    function createTermsSectionHtml(key, value, count){
-        const tempHtml = `
-            <div class="term-item mb-3 border-0 rounded-3 py-2 px-4">
-                <div class="row align-items-center">
-                    <div class="col border-bottom">
-                        <div class="col mb-2 d-flex align-items-center justify-content-between">
-                            <span class="text-secondary fw-bold fs-6 term-item-count">${count + 1}</span>
-                            <button type="button" class="btn btn-trash ms-auto">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row my-3 term-def-input-row">
-                        <div class="col-5 pt-3">
-                            <input type="text" class="custom-input term-defi-input" name="Term" value="${key}">
-                            <div class="d-flex align-items-center justify-content-between mt-2">
-                                <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                                @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
-                                    {
-                                        InputType = "term"
-                                    })
-                            </div>
-                        </div>
-                        <div class="col-5 pt-3">
-                            <input type="text" class="custom-input term-defi-input" name="Definition" value="${value}">
-                            <div class="d-flex align-items-center justify-content-between  mt-2">
-                                <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                                @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
-                                    {
-                                        InputType = "definition"
-                                    })
-                            </div>
-                        </div>
-                        <div class="col-2 text-end">
-                            <button type="button" class="btn-img btn btn-light bg-white">
-                                <i class="icon-img fa-regular fa-image"></i><br />
-                                Hình ảnh
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>`
-        return tempHtml;
+    async function createTermsSectionHtml(key, value, count) {
+        // Lấy ra partialview
+        const respone = await fetch(`/Course/GetTermDefinitionPartial?count=${count+1}
+            &termValue=${key}&defiValue=${value}`);
+        const newCard = await respone.text();
+
+        return newCard;
     }
 
     function updateDescription(selectId, descriptionId, passwordInputClass) {
@@ -350,22 +272,21 @@
         }
     });
 
+    // Đồng bộ giá trị trong btn-choose-language
     function syncSelectsByType(dataType) {
-        const selects = document.querySelectorAll('#btn-choose-language');
+        termsSection.addEventListener('change', event => {
+            const target = event.target;
 
-        // Lắng nghe sự kiện thay đổi trên mỗi select
-        selects.forEach(select => {
-            select.addEventListener('change', event => {
-                const selectedValue = event.target.value; // Lấy giá trị được chọn
-                const dataType = event.target.getAttribute('data-type'); // Lấy data-type của select đã thay đổi
+            // Kiểm tra nếu thẻ bị thay đổi là một <select> và có data-type phù hợp
+            if (target.tagName === 'SELECT' && target.getAttribute('data-type') === dataType) {
+                const selectedValue = target.value; // Lấy giá trị được chọn
 
                 // Chỉ cập nhật các select có cùng data-type
+                const selects = document.querySelectorAll(`select[data-type="${dataType}"]`);
                 selects.forEach(otherSelect => {
-                    if (otherSelect.getAttribute('data-type') === dataType) {
-                        otherSelect.value = selectedValue;
-                    }
+                    otherSelect.value = selectedValue;
                 });
-            });
+            }
         });
     }
 

@@ -29,22 +29,13 @@ namespace SmartCards.Controllers
 			return View();
 		}
 
-		// Trả về Html của PartialView
-		[HttpGet]
-		public async Task<IActionResult> GetMenuLanguagesPartial([FromRoute] string inputType) 
-		{
-			ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
-			var model = new { InputType = inputType };
-			return PartialView("~/Views/Course/ViewPartials/_MenuLanguagesPartial.cshtml", model);
-        }
-
         // Trả về Html của PartialView
         [HttpGet]
-        public async Task<IActionResult> GetTermDefinitionPartial([FromRoute] string inputType)
+        public async Task<IActionResult> GetTermDefinitionPartial([FromQuery] int count, [FromQuery] string termValue, [FromQuery] string defiValue)
         {
             ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
-            var model = new { InputType = inputType };
-            return PartialView("~/Views/Course/ViewPartials/_MenuLanguagesPartial.cshtml", model);
+            var model = new { count = count, termValue = termValue, defiValue = defiValue };
+            return PartialView("~/Views/Course/ViewPartials/_TermDefinitionPartial.cshtml", model);
         }
     }
 }
