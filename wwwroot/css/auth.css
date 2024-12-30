@@ -1,0 +1,155 @@
+/* Tạo một background màu gradient hấp dẫn cho trang */
+body.auth-page {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Làm cho phần chính của form auth nằm giữa trang */
+.auth-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 20px 0 0;
+}
+
+/* Định dạng card cho form */
+.auth-form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    min-width: 400px;
+}
+
+/* Định dạng tiêu đề */
+.auth-form h1,
+.auth-form h3 {
+    text-align: center;
+    color: #333;
+}
+
+/* Styling các input, nút bấm và checkbox */
+.auth-form .form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.auth-form .form-control:focus {
+    border-color: #2575fc;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(37, 117, 252, 0.2);
+}
+
+/* Thêm hiệu ứng mượt mà cho checkbox */
+.auth-form .form-check-input:checked {
+    background-color: #2575fc;
+    border-color: #2575fc;
+}
+
+/* Button đăng nhập */
+.auth-form #auth-submit {
+    background-color: #2575fc;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form #auth-submit:hover {
+    background-color: #6a11cb;
+}
+
+/* Liên kết phía dưới form */
+.auth-form .auth-links p {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+}
+
+.auth-form .auth-links a {
+    color: #2575fc;
+    text-decoration: none;
+}
+
+.auth-form .auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Styling cho các buttons auth với Google và Facebook */
+.social-auth-buttons button {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.social-auth-buttons button:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+/* Nút auth với Google & Facebook */
+.social-auth-buttons .google-auth,
+.social-auth-buttons .facebook-auth {
+    background-color: #fff;
+    color: #3c4043;
+    border: 1px solid #ddd;
+}
+
+.social-auth-buttons .google-auth:hover,
+.social-auth-buttons .facebook-auth:hover {
+    background-color: #f1f3f4;
+}
+
+.social-auth-buttons .google-auth svg {
+    vertical-align: middle;
+    margin-right: 8px;
+    transition: fill 0.3s ease;
+}
+
+.social-auth-buttons .facebook-auth i {
+    vertical-align: middle;
+    color: #1877f2;
+    font-size: 24px;
+    margin-right: 8px;
+    transition: color 0.3s ease;
+}
+
+.social-auth-buttons .facebook-auth:hover i {
+    color: #145dbf;
+}
+
+/* Định dạng phần liên kết quên mật khẩu và gửi lại xác nhận email */
+.auth-form hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 2px solid #eee;
+}
+
+/* Responsive cho thiết bị di động */
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+    }
+
+    .auth-form {
+        padding: 20px;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .social-auth-buttons {
+        margin-top: 20px;
+    }
+}
