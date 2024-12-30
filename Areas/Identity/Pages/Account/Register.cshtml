@@ -1,50 +1,53 @@
 ﻿@page "/signup"
 @model RegisterModel
+
 @{
     ViewData["Title"] = "Sign up | SmartCards";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/auth.css" />
+}
 
 <h1>Sign up</h1>
-
-<div class="row">
+<div class="auth-container">
     <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Sign up</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register or log in</h3>
-            <hr />
-            @if ((Model.ExternalLogins?.Count ?? 0) == 0)
-            {
+        <section class="auth-form">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="needs-validation" novalidate>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
+                    <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
                 <div>
+                    <button id="auth-submit" type="submit" class="w-100 btn btn-lg btn-primary">Sign up</button>
+                </div>
+                <div class="auth-links">
                     <p>
-                        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                            article
-                            about setting up this ASP.NET application to support logging in via external services
-                        </a>.
+                        <a asp-page="./Login">Already have an account? Log in here.</a>
                     </p>
                 </div>
-            }
-            else
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section class="social-auth-buttons">
+            <h3>Sign up using another service</h3>
+            <hr />
+            @if ((Model.ExternalLogins?.Count ?? 0) > 0)
             {
                 <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                     <div>
@@ -54,15 +57,22 @@
                                 @if (provider.DisplayName == "Google")
                                 {
                                     <div class="row">
-                                        <button type="submit" class="btn btn-light mt-3" style="height:50px;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
-                                            <i class="fa-brands fa-google"></i>   Continue with @provider.DisplayName
+                                        <button type="submit" class="google-auth" style="height:50px;" name="provider" value="@provider.Name" title="Sign up using your @provider.DisplayName account">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                                                <path d="M1 1h22v22H1z" fill="none"/>
+                                            </svg> Sign up with @provider.DisplayName
                                         </button>
                                     </div>
                                 }
-                                @if (provider.DisplayName == "Facebook"){
+                                @if (provider.DisplayName == "Facebook")
+                                {
                                     <div class="row">
-                                        <button type="submit" class="btn btn-light mt-3" style="height:50px;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
-                                            <i class="fa-brands fa-facebook"></i>   Continue with @provider.DisplayName
+                                        <button type="submit" class="facebook-auth" style="height:50px;" name="provider" value="@provider.Name" title="Sign up using your @provider.DisplayName account">
+                                            <i class="fa-brands fa-facebook"></i> Sign up with @provider.DisplayName
                                         </button>
                                     </div>
                                 }
@@ -70,6 +80,10 @@
                         </p>
                     </div>
                 </form>
+            }
+            else
+            {
+                <p>No external authentication services are configured.</p>
             }
         </section>
     </div>
