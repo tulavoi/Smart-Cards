@@ -52,7 +52,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<Flashcard> Flashcards { get; set; }
     public DbSet<Language> Languages { get; set; }
     public DbSet<Folder> Folders { get; set; }
-    public DbSet<CourseFolder> FolderDecks { get; set; }
+    public DbSet<CourseFolder> CourseFolders { get; set; }
     public DbSet<Permission> Permissions { get; set; }
     public DbSet<CoursePermission> CoursePermissions { get; set; }
 }

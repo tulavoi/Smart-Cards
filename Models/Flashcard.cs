@@ -7,6 +7,7 @@ namespace SmartCards.Models
     {
         public int Id { get; set; }
         public string ImageFileName { get; set; } = string.Empty;
+        public string Term { get; set; } = string.Empty;
         public string Definition { get; set; } = string.Empty;
         public bool IsMark { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;

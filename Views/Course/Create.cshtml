@@ -1,4 +1,4 @@
-﻿@using SmartCards.DTOs.Deck
+﻿@using SmartCards.DTOs.Course
 @model CreateCourseRequestDTO
 @{
     ViewData["Title"] = "Tạo học phần mới | SmartCards";
@@ -27,12 +27,12 @@
 
         <!-- Input Title -->
         <div class="mb-3">
-            <input type="text" class="form-control border-0 rounded-3" style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"'>
+            <input type="text" asp-for="@Model.Title" class="form-control border-0 rounded-3" style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"'>
         </div>
 
         <!-- Input Description -->
         <div class="mb-4">
-            <textarea class="form-control border-0 rounded-3" id="description" rows="3" placeholder="Thêm mô tả..."></textarea>
+            <textarea class="form-control border-0 rounded-3" asp-for="@Model.Description" id="description" rows="3" placeholder="Thêm mô tả..."></textarea>
         </div>
 
         <!-- Button Options -->
