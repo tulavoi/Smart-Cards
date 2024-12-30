@@ -31,10 +31,17 @@ namespace SmartCards.Controllers
 
         // Trả về Html của PartialView
         [HttpGet]
-        public async Task<IActionResult> GetTermDefinitionPartial([FromQuery] int count, [FromQuery] string termValue, [FromQuery] string defiValue)
+        public async Task<IActionResult> GetTermDefinitionPartial([FromQuery] int count, [FromQuery] string termValue, 
+            [FromQuery] string defiValue, [FromQuery] int termLanguageId, [FromQuery] int defiLanguageId)
         {
             ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
-            var model = new { count = count, termValue = termValue, defiValue = defiValue };
+            var model = new { 
+                count = count, 
+                termValue = termValue, 
+                defiValue = defiValue, 
+                termLanguageId = termLanguageId, 
+                defiLanguageId = defiLanguageId,
+            };
             return PartialView("~/Views/Course/ViewPartials/_TermDefinitionPartial.cshtml", model);
         }
     }

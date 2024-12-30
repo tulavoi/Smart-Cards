@@ -8,8 +8,13 @@
         const termItems = document.querySelectorAll('.term-item'); // Lấy tất cả term-item hiện có
         const count = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
 
+        const termLanguageId = document.querySelector('#btn-choose-language[data-type="term"]').value;
+        const defiLanguageId = document.querySelector('#btn-choose-language[data-type="definition"]').value;
+
         try {
-            const respone = await fetch(`/Course/GetTermDefinitionPartial?count=${count}&termValue=&defiValue=`);
+            const respone = await fetch(`/Course/GetTermDefinitionPartial?count=${count}&termValue=&defiValue=
+                                         &termLanguageId=${termLanguageId}&defiLanguageId=${defiLanguageId}`);
+
             const newCard = await respone.text();
 
             // Thêm card mới vào khu vực termsSection
