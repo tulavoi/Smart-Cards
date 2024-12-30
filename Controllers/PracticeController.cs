@@ -19,12 +19,9 @@ namespace SmartCards.Controllers
             _languageRepo = languageRepo;
         }
 
-		public async Task<IActionResult> Practice()
+		public async Task<IActionResult> Index()
 		{
-            ViewBag.EditPermissions = await _permissionRepo.GetAllAsync(new PermissionQueryObject { IsEdit = true });
-            ViewBag.ViewPermissions = await _permissionRepo.GetAllAsync(new PermissionQueryObject { IsEdit = false });
-			ViewBag.Languages = await _languageRepo.GetAllAsync(new LanguageQueryObject { SortBy = "Name" });
-
+            
 			return View();
 		}
     }
