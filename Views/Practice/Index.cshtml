@@ -1,0 +1,254 @@
+
+@{
+    ViewData["Title"] = " Ôn luyện | SmartCards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/practice.css" />
+}
+
+<div class="coursePage-container">
+    <h1 class="title">Other branches สาขาอื่นๆ</h1>
+    <div class="rate">
+        <i class="fa-solid fa-star"></i>
+        5.0 (1 đánh giá)
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <button class="nav-button">
+            <i class="fa-regular fa-lightbulb"></i>
+            Thẻ ghi nhớ
+        </button>
+        <button class="nav-button">
+            <i class="fa-solid fa-book"></i>
+            Học
+        </button>
+        <button class="nav-button">
+            <i class="fa-regular fa-check-circle"></i>
+            Kiểm tra
+        </button>
+        <button class="nav-button">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            Ghép thẻ
+        </button>
+        <button class="nav-button">
+            <i class="fa-solid fa-cube"></i>
+            Khối hộp
+        </button>
+    </nav>
+
+    <!-- Vocabulary Cards -->
+    <div class="vocabulary-cards">
+        <div class="vocabulary-card">
+            <div class="vocabulary-card-question">
+                <div class="vocabulary-card-icons">
+                    <div>
+                        <i class="fas fa-lightbulb icon-hint" title="Gợi ý"></i>
+                        Hiển thị gợi ý
+                    </div>
+                    <div>
+                        <i class="fas fa-volume-up icon-sound" title="Âm thanh"></i>
+                        <i class="fas fa-star icon-star" title="Yêu thích"></i>
+                    </div>
+                </div>
+                <h2 class="vocabulary-card-title">1 + 2</h2>
+                <!-- <img src="./assets/images/answer.png" alt="Answer" class="vocabulary-card-image" /> -->
+            </div>
+
+            <div class="vocabulary-card-result">
+                <div class="vocabulary-card-icons">
+                    <div>
+                        <i class="fas fa-volume-up icon-sound" title="Âm thanh"></i>
+                        <i class="fas fa-star icon-star" title="Yêu thích"></i>
+                    </div>
+                </div>
+                <h2 class="vocabulary-card-title">3</h2>
+                <!-- <img src="./assets/images/answer.png" alt="Answer" class="vocabulary-card-image" /> -->
+            </div>
+        </div>
+        <div class="vocabulary-card d-none">
+            <div class="vocabulary-card-question">
+                <div class="vocabulary-card-icons">
+                    <div>
+                        <i class="fas fa-lightbulb icon-hint" title="Gợi ý"></i>
+                        Hiển thị gợi ý
+                    </div>
+                    <div>
+                        <i class="fas fa-volume-up icon-sound" title="Âm thanh"></i>
+                        <i class="fas fa-star icon-star" title="Yêu thích"></i>
+                    </div>
+                </div>
+                <h2 class="vocabulary-card-title">3 + 4</h2>
+                <!-- <img src="./assets/images/answer.png" alt="Answer" class="vocabulary-card-image" /> -->
+            </div>
+
+            <div class="vocabulary-card-result">
+                <div class="vocabulary-card-icons">
+                    <div>
+                        <i class="fas fa-volume-up icon-sound" title="Âm thanh"></i>
+                        <i class="fas fa-star icon-star" title="Yêu thích"></i>
+                    </div>
+                </div>
+                <h2 class="vocabulary-card-title">7</h2>
+                <!-- <img src="./assets/images/answer.png" alt="Answer" class="vocabulary-card-image" /> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="vocabulary-card-controls">
+        <button class="control-button left">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <span>1 / 880</span>
+        <button class="control-button right">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <div class="vocabulary-card-footer">
+        <div class="author-info">
+            <img src="https://via.placeholder.com/40" alt="Author" class="author-avatar" />
+            <span class="author-name">VuLFn111 (Giáo Viên)</span>
+            <span class="creation-date">Đã tạo 8 tháng trước</span>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-button"><i class="fa-solid fa-share"></i> Chia sẻ</button>
+            <button class="action-button"><i class="fa-solid fa-bookmark"></i> Lưu</button>
+            <button class="action-button">
+                <i class="fa-solid fa-ellipsis-h"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Different students studied -->
+    <h1 class="title">Học sinh cũng đã học</h1>
+    <div class="studentLearnedCards">
+        <!-- Card 1 -->
+        <a href="/course-detail/tgat1-2024-vocab" class="studentLearnedCardLink">
+            <div class="card">
+                <h2 class="card_title">SMARTER TGAT1_2024_VOCAB</h2>
+                <p class="card_subtitle">896 thuật ngữ</p>
+                <div class="card_author">
+                    <img src="/path/to/gatengcoolcooli.png" alt="GATENGCOOLCOOLI" class="card_author_image" />
+                    <p class="card_author_name">GATENGCOOLCOOLI</p>
+                    <button class="card_button">Xem trước</button>
+                </div>
+            </div>
+        </a>
+        <!-- Card 2 -->
+        <a href="/course-detail/matematica" class="studentLearnedCardLink">
+            <div class="card">
+                <h2 class="card_title">matematica</h2>
+                <p class="card_subtitle">15 thuật ngữ</p>
+                <div class="card_author">
+                    <img src="/path/to/quizlette727480.png" alt="quizlette727480" class="card_author_image" />
+                    <p class="card_author_name">quizlette727480</p>
+                    <button class="card_button">Xem trước</button>
+                </div>
+            </div>
+        </a>
+        <!-- Card 3 -->
+        <a href="/course-detail/27-Amendments" class="studentLearnedCardLink">
+            <div class="card">
+                <h2 class="card_title">27 Amendments</h2>
+                <p class="card_subtitle">27 thuật ngữ</p>
+                <div class="card_author">
+                    <img src="/path/to/msolsonmta.png" alt="MsOlsonMTA" class="card_author_image" />
+                    <p class="card_author_name">MsOlsonMTA</p>
+                    <button class="card_button">Xem trước</button>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Sample Question -->
+    <h3 class="sample-question-title">Câu hỏi mẫu cho học phần này</h3>
+    <div class="sample-question">
+        <div class="question">
+            <div class="sample-question-header">
+                <p class="sample-question-header-title"><i class="fa-solid fa-book"></i> Học</p>
+                <p class="sample-question-header-page">1 / 7</p>
+                <button class="sample-question-header-btn">Dùng chế độ học</button>
+            </div>
+            <p class="sample-question-content">(N, V) เบียดี</p>
+            <h4 class="sample-question-text">Chọn câu trả lời đúng</h4>
+            <div class="options">
+                <button class="option">worried</button>
+                <button class="option">explorer</button>
+                <button class="option">learn</button>
+                <button class="option">institution</button>
+            </div>
+            <button class="unknown-section">Bạn không biết?</button>
+        </div>
+    </div>
+
+    <!-- Word List -->
+    <div class="word-list-container">
+        <h3 class="word-list-title">Thuật ngữ trong học phần này (3)</h3>
+        <div class="word-list">
+            <div class="word-item">
+                <div class="word-index">1</div>
+                <div class="word-details">
+                    <span class="word-name">abuse</span>
+                    <hr class="custom-hr" />
+                    <span class="word-definition">(N) การใช้ในทางที่ผิด</span>
+                </div>
+                <!-- <img src="abc.jpg" alt="abuse" class="word-image" /> -->
+                <div class="word-actions">
+                    <button class="action-btn favorite-btn"><i class="fas fa-star"></i></button>
+                    <button class="action-btn audio-btn"><i class="fas fa-volume-up"></i></button>
+                </div>
+            </div>
+
+            <div class="word-item">
+                <div class="word-index">2</div>
+                <div class="word-details">
+                    <span class="word-name">comfort</span>
+                    <hr class="custom-hr" />
+                    <span class="word-definition">(N) ความสบาย/ผ่อนคลาย</span>
+                </div>
+                <div class="word-actions">
+                    <button class="action-btn favorite-btn"><i class="fas fa-star"></i></button>
+                    <button class="action-btn audio-btn"><i class="fas fa-volume-up"></i></button>
+                </div>
+            </div>
+
+            <div class="word-item">
+                <div class="word-index">3</div>
+                <div class="word-details">
+                    <span class="word-name">lesson</span>
+                    <hr class="custom-hr" />
+                    <span class="word-definition">(N) บทเรียน</span>
+                </div>
+                <div class="word-actions">
+                    <button class="action-btn favorite-btn"><i class="fas fa-star"></i></button>
+                    <button class="action-btn audio-btn"><i class="fas fa-volume-up"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="special-item">
+            <div class="special-definition">
+                <button class="toggle-definition-btn">Hiển thị định nghĩa</button>
+            </div>
+            <!-- <div class="special-mode">
+                <div class="mode-select">
+                    <div class="selected-mode">
+                        Thẻ ghi nhớ
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="mode-options">
+                        <div class="mode-option"><i class="fas fa-tags"></i> Thẻ ghi nhớ</div>
+                        <div class="mode-option"><i class="fas fa-book-open"></i> Học</div>
+                        <div class="mode-option"><i class="fas fa-check-circle"></i> Kiểm tra</div>
+                        <div class="mode-option"><i class="fas fa-puzzle-piece"></i> Ghép thẻ</div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<script src="~/js/practice.js"></script>

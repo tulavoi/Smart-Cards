@@ -4,11 +4,14 @@
 @{
     ViewData["Title"] = "Log in | SmartCards";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/auth.css" />
+}
 
 <h1>Login</h1>
-<div class="row">
+<div class="auth-container">
     <div class="col-md-4">
-        <section>
+        <section class="auth-form">
             <form id="account" method="post">
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
@@ -29,9 +32,9 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="auth-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
-                <div>
+                <div class="auth-links mt-3">
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
@@ -46,7 +49,7 @@
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <section>
+        <section class="social-auth-buttons">
             <h3>Use another service to log in.</h3>
             <hr />
             @{
@@ -55,7 +58,7 @@
                     <div>
                         <p>
                             There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
+                            about setting up this ASP.NET application to support logging in via external services</a>).
                         </p>
                     </div>
                 }
@@ -66,24 +69,25 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    // <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                     @if (provider.DisplayName == "Google")
                                     {
                                         <div class="row">
-                                            <button type="submit" class="btn btn-light mt-3" style="height:50px;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
-                                                <i class="fa-brands fa-google"></i> Login with @provider.DisplayName
+                                            <button type="submit" class="google-auth" style="height:50px;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/><path d="M1 1h22v22H1z" fill="none"/>
+                                                </svg> Login with @provider.DisplayName
                                             </button>
                                         </div>
                                     }
                                     @if (provider.DisplayName == "Facebook")
                                     {
                                         <div class="row">
-                                            <button type="submit" class="btn btn-light mt-3" style="height:50px;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                            <button type="submit" class="facebook-auth" style="height:50px;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <i class="fa-brands fa-facebook"></i> Login with @provider.DisplayName
                                             </button>
                                         </div>
                                     }
-
                                 }
                             </p>
                         </div>
