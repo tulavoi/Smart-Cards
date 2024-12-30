@@ -4,6 +4,7 @@
     {
         public string Term { get; set; } = string.Empty;
         public string Definition { get; set; } = string.Empty;
-		public int LanguageId { get; set; }
+		public int TermLanguageId { get; set; }
+		public int DefiLanguageId { get; set; }
 	}
 }

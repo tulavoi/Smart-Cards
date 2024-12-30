@@ -12,8 +12,8 @@ using SmartCards.Areas.Identity.Data;
 namespace SmartCards.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241224104519_Courses_CoursePermissions_Flashcards_Folders_CourseFolders_Language_Permission")]
-    partial class Courses_CoursePermissions_Flashcards_Folders_CourseFolders_Language_Permission
+    [Migration("20241230083935_Identity_Courses_CoursePermissions_Flashcards_Folders_CourseFolders_Language_Permission")]
+    partial class Identity_Courses_CoursePermissions_Flashcards_Folders_CourseFolders_Language_Permission
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace SmartCards.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ffd6f260-8df9-4ed4-9944-9be11aa04876",
+                            Id = "23939c13-80f1-4fce-ac4c-d36c7058d62a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "7d3669c8-4383-48dc-a284-94a08e624b5e",
+                            Id = "d8ff49e3-1f52-4a2a-914b-054555850d09",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -286,10 +286,10 @@ namespace SmartCards.Migrations
 
             modelBuilder.Entity("SmartCards.Models.CourseFolder", b =>
                 {
-                    b.Property<int>("CourseId")
+                    b.Property<int>("FolderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FolderId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -298,9 +298,9 @@ namespace SmartCards.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CourseId", "FolderId");
+                    b.HasKey("FolderId", "CourseId");
 
-                    b.HasIndex("FolderId");
+                    b.HasIndex("CourseId");
 
                     b.ToTable("CourseFolder");
                 });
@@ -353,6 +353,10 @@ namespace SmartCards.Migrations
                     b.Property<bool>("IsMark")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Term")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Term_LangId")
                         .HasColumnType("int");
 
@@ -388,15 +392,13 @@ namespace SmartCards.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Folders");
                 });
@@ -432,81 +434,81 @@ namespace SmartCards.Migrations
                         {
                             Id = 1,
                             Code = "en",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(722),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5492),
                             Name = "English",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(722)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5493)
                         },
                         new
                         {
                             Id = 2,
                             Code = "fr",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(725),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5495),
                             Name = "French",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(725)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5495)
                         },
                         new
                         {
                             Id = 3,
                             Code = "de",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(727),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5497),
                             Name = "German",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(728)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5497)
                         },
                         new
                         {
                             Id = 4,
                             Code = "es",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(729),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5499),
                             Name = "Spanish",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(730)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5499)
                         },
                         new
                         {
                             Id = 5,
                             Code = "it",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(731),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5501),
                             Name = "Italian",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(732)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5502)
                         },
                         new
                         {
                             Id = 6,
                             Code = "pt",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(733),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5503),
                             Name = "Portuguese",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(734)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5503)
                         },
                         new
                         {
                             Id = 7,
                             Code = "zh",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(735),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5505),
                             Name = "Chinese",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(736)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5506)
                         },
                         new
                         {
                             Id = 8,
                             Code = "ja",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(737),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5507),
                             Name = "Japanese",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(738)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5507)
                         },
                         new
                         {
                             Id = 9,
                             Code = "ru",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(739),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5509),
                             Name = "Russian",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(740)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5509)
                         },
                         new
                         {
                             Id = 10,
                             Code = "ar",
-                            CreatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(741),
+                            CreatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5511),
                             Name = "Arabic",
-                            UpdatedAt = new DateTime(2024, 12, 24, 17, 45, 18, 902, DateTimeKind.Local).AddTicks(742)
+                            UpdatedAt = new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5511)
                         });
                 });
 
@@ -539,37 +541,37 @@ namespace SmartCards.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Chỉ những người có mật khẩu mới có thể sử dụng học phần này",
-                            IsEdit = false,
-                            Name = "Người có mật khẩu"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Chỉ tôi mới có thể sử dụng học phần này",
-                            IsEdit = false,
-                            Name = "Chỉ tôi"
-                        },
-                        new
-                        {
-                            Id = 3,
                             Description = "Mọi người đều có thể sử dụng học phần này",
                             IsEdit = false,
                             Name = "Mọi người"
                         },
                         new
                         {
-                            Id = 4,
-                            Description = "Chỉ những người có mật khẩu mới có thể chỉnh sửa học phần này",
-                            IsEdit = true,
+                            Id = 2,
+                            Description = "Chỉ những người có mật khẩu mới có thể sử dụng học phần này",
+                            IsEdit = false,
                             Name = "Người có mật khẩu"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 3,
+                            Description = "Chỉ tôi mới có thể sử dụng học phần này",
+                            IsEdit = false,
+                            Name = "Chỉ tôi"
+                        },
+                        new
+                        {
+                            Id = 4,
                             Description = "Chỉ tôi mới có thể chỉnh sửa học phần này",
                             IsEdit = true,
                             Name = "Chỉ tôi"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Chỉ những người có mật khẩu mới có thể chỉnh sửa học phần này",
+                            IsEdit = true,
+                            Name = "Người có mật khẩu"
                         });
                 });
 
@@ -644,7 +646,7 @@ namespace SmartCards.Migrations
                         .IsRequired();
 
                     b.HasOne("SmartCards.Models.Folder", "Folder")
-                        .WithMany("FolderDecks")
+                        .WithMany("CourseFolders")
                         .HasForeignKey("FolderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -712,7 +714,9 @@ namespace SmartCards.Migrations
                 {
                     b.HasOne("SmartCards.Areas.Identity.Data.AppUser", "User")
                         .WithMany("Folders")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -733,7 +737,7 @@ namespace SmartCards.Migrations
 
             modelBuilder.Entity("SmartCards.Models.Folder", b =>
                 {
-                    b.Navigation("FolderDecks");
+                    b.Navigation("CourseFolders");
                 });
 #pragma warning restore 612, 618
         }

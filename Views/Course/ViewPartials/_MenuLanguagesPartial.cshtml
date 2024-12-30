@@ -3,6 +3,13 @@
     <option value="0">CHỌN NGÔN NGỮ</option>
     @foreach (var language in ViewBag.Languages)
     {
-        <option value="@language.Id">@language.Name</option>
+        if (Model.SelectedLanguageId == language.Id)
+        {
+            <option value="@language.Id" selected>@language.Name</option>
+        }
+        else
+        {
+            <option value="@language.Id">@language.Name</option>
+        }
     }
 </select>

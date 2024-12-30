@@ -16,7 +16,8 @@
                     <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
                     @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
                         {
-                            InputType = "term"
+                            InputType = "term",
+                            SelectedLanguageId = Model.termLanguageId,
                         })
                 </div>
             </div>
@@ -26,7 +27,8 @@
                     <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
                     @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
                         {
-                            InputType = "definition"
+                            InputType = "definition",
+                            SelectedLanguageId = Model.defiLanguageId,
                         })
                 </div>
             </div>
