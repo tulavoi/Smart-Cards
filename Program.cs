@@ -45,6 +45,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ICoursePermissionRepository, CoursePermissionRepository>();
+builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
 
 var app = builder.Build();
 

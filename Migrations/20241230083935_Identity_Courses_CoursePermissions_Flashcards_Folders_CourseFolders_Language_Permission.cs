@@ -112,8 +112,8 @@ namespace SmartCards.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -274,8 +274,8 @@ namespace SmartCards.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Term = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Definition = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Term = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Definition = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsMark = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
