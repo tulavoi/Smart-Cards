@@ -9,10 +9,12 @@ namespace SmartCards.Repositories
     public class CourseRepository : ICourseRepository
     {
         private readonly AppDbContext _context;
+        private readonly ICoursePermissionRepository _coursePerRepo;
 
-        public CourseRepository(AppDbContext context)
+        public CourseRepository(AppDbContext context, ICoursePermissionRepository coursePerRepo)
         {
             _context = context;
+            _coursePerRepo = coursePerRepo;
         }
 
         public async Task CreateAsync(Course course, int viewPerId, int ediPerId)
@@ -30,8 +32,8 @@ namespace SmartCards.Repositories
                     EditPermissionId = ediPerId,
                 };
 
-                await _context.CoursePermissions.AddAsync(coursePermission);
-                await _context.SaveChangesAsync();
+                await _coursePerRepo.CreateAsync(coursePermission); // Tạo course permission
+
                 await transaction.CommitAsync();
             }
             catch

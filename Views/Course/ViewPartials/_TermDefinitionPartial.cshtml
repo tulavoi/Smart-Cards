@@ -17,24 +17,40 @@
                 <input type="text" class="custom-input term-defi-input" name="Flashcards[@index].Term" value="@Model.termValue">
                 <div class="d-flex align-items-center justify-content-between mt-2">
                     <span class="fw-bold text-secondary" style="font-size: 10px;">THUẬT NGỮ</span>
-                    @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                    <select name="Flashcards[@index].TermLanguageId" id="btn-choose-language" class="form-select" data-type="term">
+                        <option value="0">CHỌN NGÔN NGỮ</option>
+                        @foreach (var language in ViewBag.Languages)
                         {
-                            InputType = "term",
-                            SelectedLanguageId = Model.termLanguageId,
-                            NameLanguageId = $"Flashcards[{index}].TermLanguageId"
-                        })
+                            if (Model.termLanguageId == language.Id)
+                            {
+                                <option value="@language.Id" selected>@language.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@language.Id">@language.Name</option>
+                            }
+                        }
+                    </select>
                 </div>
             </div>
             <div class="col-5 pt-3">
                 <input type="text" class="custom-input term-defi-input" name="Flashcards[@index].Definition" value="@Model.defiValue">
                 <div class="d-flex align-items-center justify-content-between  mt-2">
                     <span class="fw-bold text-secondary" style="font-size: 10px;">ĐỊNH NGHĨA</span>
-                    @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                    <select name="Flashcards[@index].DefiLanguageId" id="btn-choose-language" class="form-select" data-type="definition">
+                        <option value="0">CHỌN NGÔN NGỮ</option>
+                        @foreach (var language in ViewBag.Languages)
                         {
-                            InputType = "definition",
-                            SelectedLanguageId = Model.defiLanguageId,
-                            NameLanguageId = $"Flashcards[{index}].DefiLanguageId"
-                        })
+                            if (Model.termLanguageId == language.Id)
+                            {
+                                <option value="@language.Id" selected>@language.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@language.Id">@language.Name</option>
+                            }
+                        }
+                    </select>
                 </div>
             </div>
             <div class="col-2 text-end">
@@ -46,3 +62,19 @@
         </div>
     </div>
 </div>
+
+@* @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                        {
+                            InputType = "term",
+                            SelectedLanguageId = Model.termLanguageId,
+                            NameLanguageId = $"TermLanguageId",
+                            Languages = ViewBag.Languages
+                        }) *@
+
+@* @await Html.PartialAsync("ViewPartials/_MenuLanguagesPartial", new
+                        {
+                            InputType = "definition",
+                            SelectedLanguageId = Model.defiLanguageId,
+                            NameLanguageId = $"DefiLanguageId",
+                            Languages = ViewBag.Languages
+                        }) *@

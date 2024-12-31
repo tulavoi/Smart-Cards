@@ -1,7 +1,7 @@
 ﻿@model dynamic
 <select name="@Model.NameLanguageId" id="btn-choose-language" class="form-select" data-type="@Model.InputType">
     <option value="0">CHỌN NGÔN NGỮ</option>
-    @foreach (var language in ViewBag.Languages)
+    @foreach (var language in Model.Languages)
     {
         if (Model.SelectedLanguageId == language.Id)
         {

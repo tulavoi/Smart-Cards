@@ -42,15 +42,15 @@ namespace SmartCards.Controllers
             var course = courseDTO.ToCourseFromCreateDTO(this.UserId);
             await _courseRepo.CreateAsync(course, courseDTO.ViewPermissionId, courseDTO.EditPermissionId);
 
-            return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
+            return CreatedAtAction(nameof(GetById), new { id = course.Id }, course.ToCourseDTO());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var course = _courseRepo.GetByIdAsync(id);
+            var course = await _courseRepo.GetByIdAsync(id);
             if (course == null) return NotFound();
-            return Ok(course);
+            return Ok(course.ToCourseDTO());
         }
 
         // Trả về Html của PartialView
