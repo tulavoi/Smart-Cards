@@ -6,6 +6,7 @@
 
     async function addNewCard() {
         const termItems = document.querySelectorAll('.term-item'); // Lấy tất cả term-item hiện có
+        console.log(termItems.length);
         const count = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
 
         const termLanguageId = document.querySelector('#btn-choose-language[data-type="term"]').value;
@@ -30,7 +31,7 @@
             });
         }
         catch (error) {
-            console.error('Error loading menu languages:', error);
+            console.error('Error loading menu languages: ', error);
         }
     }
 
@@ -264,6 +265,24 @@
         updateDescription('view-per-select', 'view-per-description', '#view-per-course-password-input');
         updateDescription('edit-per-select', 'edit-per-description', '#edit-per-course-password-input');
     });
+
+    function syncPasswordInputs() {
+        const viewPasswordInput = document.getElementById('view-per-course-password-input');
+        const editPasswordInput = document.getElementById('edit-per-course-password-input');
+
+        // Lắng nghe sự kiện 'input' trên ô view
+        viewPasswordInput.addEventListener('input', function () {
+            editPasswordInput.value = viewPasswordInput.value;
+        });
+
+        // Lắng nghe sự kiện 'input' trên ô edit
+        editPasswordInput.addEventListener('input', function () {
+            viewPasswordInput.value = editPasswordInput.value;
+        });
+    }
+
+    //Đồng bộ giá trị trong 2 input password
+    syncPasswordInputs();
 
     $(window).on('scroll', function () {
         var scrollTop = $(window).scrollTop();

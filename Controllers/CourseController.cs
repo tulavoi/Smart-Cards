@@ -42,7 +42,6 @@ namespace SmartCards.Controllers
             var course = courseDTO.ToCourseFromCreateDTO(this.UserId);
             await _courseRepo.CreateAsync(course, courseDTO.ViewPermissionId, courseDTO.EditPermissionId);
 
-            //return RedirectToAction("Index", "Home");
             return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
         }
 
