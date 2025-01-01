@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using api.Helpers;
+using Microsoft.EntityFrameworkCore;
 using SmartCards.Areas.Identity.Data;
 using SmartCards.Interfaces;
 using SmartCards.Models;
@@ -41,6 +42,12 @@ namespace SmartCards.Repositories
                 await transaction.RollbackAsync();
                 throw;
             }
+        }
+
+        public async Task<List<Course>> GetAllAsync(CourseQueryObject query)
+        {
+            var courses = _context.Courses.AsQueryable();
+            return await courses.ToListAsync();
         }
 
         public async Task<Course?> GetByIdAsync(int id)

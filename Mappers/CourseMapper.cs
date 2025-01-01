@@ -12,6 +12,7 @@ namespace SmartCards.Mappers
             {
                 Id = course.Id,
                 UserId = course.UserId,
+                Username = course.User?.UserName ?? string.Empty,
                 Title = course.Title,
                 Password = course.Password,
                 Description = course.Description,
