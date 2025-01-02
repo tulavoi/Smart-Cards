@@ -1,0 +1,127 @@
+.folder-content-createform .modal-content {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    max-width: 1000px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.folder-content-createform .modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.folder-content-createform .modal-close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.folder-content-createform .close-icon {
+    fill: white;
+}
+
+.folder-content-createform header h1 {
+    padding-top: 1rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: start;
+    border: none;
+}
+
+.folder-content-createform .form-content {
+    padding: 1rem 2rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.folder-content-createform .input-group {
+    margin-bottom: 1.5rem;
+}
+
+.folder-content-createform .floating-label {
+    position: relative;
+    width: 100%;
+}
+
+.folder-content-createform .floating-label input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.folder-content-createform .floating-label input::placeholder {
+    color: transparent;
+}
+
+.folder-content-createform .floating-label label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    transition: all 0.2s ease;
+    padding: 0 0.25rem;
+    background: transparent;
+}
+
+.folder-content-createform .floating-label.active label,
+.folder-content-createform .floating-label input:focus ~ label {
+    top: 0;
+    transform: translateY(0);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 0 0.25rem;
+}
+
+.folder-content-createform .floating-label input:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.folder-content-createform .modal-footer {
+    padding: 1rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.folder-content-createform .btn-create {
+    background-color: white;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.folder-content-createform .btn-create:hover {
+    background-color: #f0f0f0;
+}
+
+.folder-content-createform .btn-create:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}

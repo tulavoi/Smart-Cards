@@ -1,0 +1,55 @@
+.practicetest-content-practicetestcontent .icon-practice-test {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.practicetest-content-practicetestcontent .AssemblyIcon--xxxlarge {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 1.5rem;
+}
+
+.practicetest-content-practicetestcontent .title-practice-test {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    max-width: 400px;
+}
+
+.practicetest-content-practicetestcontent .button-practice-test {
+    margin-top: 1rem;
+}
+
+.practicetest-content-practicetestcontent .create-practice-button {
+    background-color: #3b4c9b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.practicetest-content-practicetestcontent .create-practice-button:hover {
+    background-color: #2a3670;
+}
+
+.AssemblyPrimaryButton--default {
+    background-color: #2E3856;
+}
+
+.AssemblyButtonBase--medium {
+    font-size: 1rem;
+    padding: 8px 16px;
+}
+
+.AssemblyButtonBase--padding {
+    padding-left: 24px;
+    padding-right: 24px;
+}

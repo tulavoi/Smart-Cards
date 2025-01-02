@@ -1,0 +1,70 @@
+<div class="folder-content-foldercontent">
+    <div class="DashboardPage-primaryContents">
+        <div class="DashboardPage-main">
+            <div class="UIContainer">
+                <div class="ProfilePage-content">
+                    <div class="ProfileRecentPage">
+                        <div class="ProfileRecentFeed">
+                            <div class="select-filter">
+                                <div data-overlay-container="true" class="dropdown-container-folder">
+                                    <button
+                                        type="button"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        aria-label="Lọc thư mục"
+                                        class="select-filter-button btn btn-secondary"
+                                        onclick="toggleDropdown()"
+                                    >
+                                        <span id="selectedFilter">Đã tạo</span>
+                                        <svg
+                                            aria-label="dấu mũ chỉ xuống"
+                                            class="AssemblyIcon AssemblyIcon--small"
+                                            role="img"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                        >
+                                            <path d="M7 10l5 5 5-5z" fill="currentColor" />
+                                        </svg>
+                                    </button>
+
+                                    <div id="dropdownMenu" class="dropdown-menu-folder" style="display: none;">
+                                        <button class="dropdown-item-folder" onclick="handleFilterSelect('Đã tạo')">Đã tạo</button>
+                                        <button class="dropdown-item-folder" onclick="handleFilterSelect('Đã đánh dấu')">Đã đánh dấu</button>
+                                        <button class="dropdown-item-folder" onclick="handleFilterSelect('Gần đây')">Gần đây</button>
+                                        <button class="dropdown-item-folder" onclick="handleFilterSelect('Đã học')">Đã học</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="foldersContainer" class="mt-3">
+                                <div class="folder-empty" style="display: none;">
+                                    <img
+                                        alt="Không tìm thấy thư mục nào trong thư viện"
+                                        src="https://assets.quizlet.com/_next/static/media/folders_empty.4ec6ab1f.svg"
+                                        class="img-fluid"
+                                    />
+                                    <div class="folder-title text-white">Bạn chưa tạo thư mục nào</div>
+                                    <div class="folder-description text-white">Tạo một thư mục để sắp xếp các học phần</div>
+                                    <div class="folder-action">
+                                        <button
+                                            type="button"
+                                            class="create-folder-button btn btn-primary"
+                                            onclick="handleCreateClick()"
+                                            aria-label="Tạo thư mục"
+                                        >
+                                            <span>Tạo thư mục</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" style="display: none;">
+        <CreateForm />
+    </div>
+</div> 

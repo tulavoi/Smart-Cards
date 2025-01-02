@@ -1,0 +1,126 @@
+/* Dropdown styles */
+.folder-content-foldercontent .dropdown-container-folder {
+  position: relative;
+  margin-left: -24rem;
+}
+
+.folder-content-foldercontent .dropdown-menu-folder    {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.folder-content-foldercontent .dropdown-item-folder {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  clear: both;
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  text-align: left;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.folder-content-foldercontent .dropdown-item-folder:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.folder-content-foldercontent .select-filter-button {
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folder-content-foldercontent .select-filter-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.folder-content-foldercontent .AssemblyIcon--small {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Empty state styles */
+.folder-content-foldercontent .folder-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.folder-content-foldercontent .folder-empty img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.folder-content-foldercontent .folder-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.folder-content-foldercontent .folder-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 24px;
+}
+
+.folder-content-foldercontent .create-folder-button {
+  background-color: #3b4c9b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.folder-content-foldercontent .create-folder-button:hover {
+  background-color: #2a3670;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .folder-content-foldercontent .folder-empty {
+    padding: 24px 16px;
+  }
+  
+  .folder-content-foldercontent .folder-empty img {
+    width: 160px;
+  }
+  
+  .folder-content-foldercontent .folder-title {
+    font-size: 18px;
+  }
+  
+  .folder-content-foldercontent .folder-description {
+    font-size: 14px;
+  }
+  
+  .folder-content-foldercontent .create-folder-button {
+    padding: 10px 20px;
+  }
+}

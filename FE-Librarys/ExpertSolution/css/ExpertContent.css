@@ -1,0 +1,51 @@
+.expert-solution-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.solution-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 16px 0;
+}
+
+.solution-button {
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+}
+
+.solution-button:hover {
+    background-color: rgba(213, 220, 241, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .UIContainer {
+        padding: 16px;
+    }
+    
+    .expert-solution-empty {
+        padding: 24px 16px;
+    }
+    
+    .expert-solution-empty img {
+        width: 160px;
+    }
+    
+    .solution-text {
+        font-size: 16px;
+    }
+    
+    .solution-button {
+        padding: 10px 20px;
+    }
+}

@@ -1,0 +1,70 @@
+<div class="courseunitlib-content-courseunitcontent">
+    <div class="DashboardPage-primaryContents">
+        <div class="DashboardPage-main">
+            <div class="UIContainer">
+                <div class="ProfilePage-content">
+                    <div class="ProfileRecentPage">
+                        <div class="ProfileRecentFeed">
+                            <div class="select-filter">
+                                <div data-overlay-container="true" class="dropdown-container-course">
+                                    <button
+                                        type="button"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        aria-label="Lọc học phần"
+                                        class="select-filter-button btn btn-secondary"
+                                        onclick="toggleDropdown()"
+                                    >
+                                        <span id="selectedFilter">Gần đây</span>
+                                        <svg
+                                            aria-label="dấu mũ chỉ xuống"
+                                            class="AssemblyIcon AssemblyIcon--small"
+                                            role="img"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                        >
+                                            <path d="M7 10l5 5 5-5z" fill="currentColor" />
+                                        </svg>
+                                    </button>
+
+                                    <div id="dropdownMenu" class="dropdown-menu-course" style="display: none;">
+                                        <button class="dropdown-item-course" onclick="handleFilterSelect('Gần đây')">Gần đây</button>
+                                        <button class="dropdown-item-course" onclick="handleFilterSelect('Đã tạo')">Đã tạo</button>
+                                        <button class="dropdown-item-course" onclick="handleFilterSelect('Đã học')">Đã học</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="courseUnitsContainer" class="mt-3">
+                                <!-- Danh sách học phần sẽ được hiển thị ở đây -->
+                                <div class="empty-state" style="display: none;">
+                                    <img
+                                        alt="Không tìm thấy học phần nào trong thư viện"
+                                        src="https://assets.quizlet.com/_next/static/media/sets_empty.e06b562c.svg"
+                                        class="img-fluid"
+                                    />
+                                    <div class="title text-white" style="font-size: 24px;">
+                                        Bạn chưa có học phần nào
+                                    </div>
+                                    <div class="description text-white">
+                                        Các học phần bạn tạo hoặc học sẽ hiển thị ở đây.
+                                    </div>
+                                    <div class="button-container">
+                                        <button
+                                            type="button"
+                                            aria-label="Tạo học phần"
+                                            class="create-course-button btn btn-primary"
+                                            onclick="handleCreateClick()"
+                                        >
+                                            <span>Tạo học phần</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

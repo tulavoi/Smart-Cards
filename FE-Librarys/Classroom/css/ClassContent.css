@@ -1,0 +1,15 @@
+.classroom-content-createclassbutton {
+    background-color: #3b4c9b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.classroom-content-createclassbutton:hover {
+    background-color: #2a3670;
+}

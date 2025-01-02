@@ -1,0 +1,113 @@
+.library-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.DashboardLayout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.DashboardLayout-main {
+    width: 100%;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.header-title h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+.AssemblyTabs {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+.AssemblyTab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: white;
+}
+
+.AssemblyTab a {
+    color: white;
+    text-decoration: none;
+}
+
+.AssemblyTab.selected {
+    border-bottom: 2px solid #3ccfcf;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.empty-state img {
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+
+.empty-state .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state .description {
+    color: #586380;
+    margin-bottom: 1rem;
+}
+
+.AssemblyButtonBase {
+    background-color: #3ccfcf;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.DashboardPage-primaryContents {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#mainContent {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .DashboardLayout-container {
+        padding: 1rem;
+    }
+
+    .header-title h2 {
+        font-size: 1.5rem;
+    }
+}
