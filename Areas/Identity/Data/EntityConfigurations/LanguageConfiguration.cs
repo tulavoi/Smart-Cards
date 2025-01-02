@@ -19,8 +19,9 @@ namespace SmartCards.Areas.Identity.Data.EntityConfigurations
 				new Language { Id = 7, Code = "zh", Name = "Chinese", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
 				new Language { Id = 8, Code = "ja", Name = "Japanese", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
 				new Language { Id = 9, Code = "ru", Name = "Russian", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
-				new Language { Id = 10, Code = "ar", Name = "Arabic", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
-			);
+				new Language { Id = 10, Code = "ar", Name = "Arabic", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+				new Language { Id = 11, Code = "vn", Name = "Việt Nam", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
+            );
 		}
 	}
 }

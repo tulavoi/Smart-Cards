@@ -19,8 +19,8 @@ namespace SmartCards.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -114,6 +114,7 @@ namespace SmartCards.Migrations
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -135,7 +136,7 @@ namespace SmartCards.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -273,9 +274,9 @@ namespace SmartCards.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Term = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Definition = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Term = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Definition = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     IsMark = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -337,16 +338,17 @@ namespace SmartCards.Migrations
                 columns: new[] { "Id", "Code", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, "en", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5492), "English", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5493) },
-                    { 2, "fr", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5495), "French", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5495) },
-                    { 3, "de", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5497), "German", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5497) },
-                    { 4, "es", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5499), "Spanish", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5499) },
-                    { 5, "it", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5501), "Italian", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5502) },
-                    { 6, "pt", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5503), "Portuguese", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5503) },
-                    { 7, "zh", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5505), "Chinese", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5506) },
-                    { 8, "ja", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5507), "Japanese", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5507) },
-                    { 9, "ru", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5509), "Russian", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5509) },
-                    { 10, "ar", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5511), "Arabic", new DateTime(2024, 12, 30, 15, 39, 35, 179, DateTimeKind.Local).AddTicks(5511) }
+                    { 1, "en", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7201), "English", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7201) },
+                    { 2, "fr", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7205), "French", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7205) },
+                    { 3, "de", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7207), "German", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7208) },
+                    { 4, "es", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7210), "Spanish", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7210) },
+                    { 5, "it", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7212), "Italian", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7213) },
+                    { 6, "pt", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7215), "Portuguese", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7215) },
+                    { 7, "zh", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7217), "Chinese", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7218) },
+                    { 8, "ja", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7220), "Japanese", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7220) },
+                    { 9, "ru", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7222), "Russian", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7222) },
+                    { 10, "ar", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7224), "Arabic", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7225) },
+                    { 11, "vn", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7227), "Việt Nam", new DateTime(2025, 1, 2, 11, 39, 37, 303, DateTimeKind.Local).AddTicks(7227) }
                 });
 
             migrationBuilder.InsertData(
@@ -366,8 +368,8 @@ namespace SmartCards.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "23939c13-80f1-4fce-ac4c-d36c7058d62a", null, "Admin", "ADMIN" },
-                    { "d8ff49e3-1f52-4a2a-914b-054555850d09", null, "User", "USER" }
+                    { "23dabafa-fe42-4991-bd21-2706a5b9b5e6", null, "User", "USER" },
+                    { "3e30e206-a412-496d-ad26-6c1c198b8dbe", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
