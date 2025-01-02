@@ -12,6 +12,7 @@ namespace SmartCards.Models
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
         public string? Password { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 		public string UserId { get; set; } = string.Empty;

@@ -15,6 +15,7 @@ namespace SmartCards.Mappers
                 Username = course.User?.UserName ?? string.Empty,
                 Title = course.Title,
                 Password = course.Password,
+                Slug = course.Slug,
                 Description = course.Description,
                 Flashcards = course.Flashcards.Select(x => x.ToFlashcardDTO()).ToList()
             };

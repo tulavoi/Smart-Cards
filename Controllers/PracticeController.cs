@@ -10,7 +10,8 @@ namespace SmartCards.Controllers
 	[Route("/practice")]
 	public class PracticeController : Controller
 	{
-		public async Task<IActionResult> Index()
+		[HttpGet("{slug}")]
+		public async Task<IActionResult> Index([FromRoute] string slug)
 		{
             
 			return View();

@@ -21,9 +21,14 @@ namespace SmartCards.Controllers
             _courseRepo = courseRepo;
         }
 
-        public async Task<IActionResult> Index([FromQuery] CourseQueryObject query)
+        public async Task<IActionResult> Index()
         {
-            var courses = await _courseRepo.GetAllAsync(query);
+            var courses = await _courseRepo.GetAllAsync(new CourseQueryObject
+            {
+                SortBy = "CreatedAt",
+                IsDecsending = true,
+                MaxItem = 4
+            });
             var coursesDTO = courses.Select(c => c.ToCourseDTO()).ToList();
             return View(coursesDTO);
         }

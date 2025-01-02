@@ -1,5 +1,10 @@
-﻿@using SmartCards.DTOs.Course
+﻿@using Microsoft.AspNetCore.Identity
+@using SmartCards.Areas.Identity.Data
+@using SmartCards.DTOs.Course
 @model List<CourseDTO>
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
 @{
     ViewData["Title"] = "Học phần của bạn | SmartCards";
 }
@@ -8,24 +13,31 @@
 }
 <div class="container my-4">
     <!-- Học phần gần đây -->
-    <div>
-        <h5 class="section-title">Gần đây</h5>
-        <div class="row gy-3">
-            <a class="col-md-6 btn">
-                <div class="recent-course p-2 row">
-                    <div class="col-2 p-0">
-                        <img src="/images/icons/card.png" alt="Icon">
-                    </div>
-                    <div class="col-10 p-0">
-                        <h6 class="mb-1">Từ vựng N5 (Động từ)</h6>
-                        <span class="fw-bold course-info m-0 text-secondary">Học phần • 106 terms • Tác giả: bạn</span>
-                    </div>
-                </div>
-            </a>
-
-           
+    @if (Model.Count > 0)
+    {
+        <div>
+            <h5 class="section-title">Gần đây</h5>
+            <div class="row gy-2">
+                @foreach (var course in Model)
+                {
+                    <a class="col-md-6 btn" asp-controller="Practice" asp-action="Index" asp-route-slug="@course.Slug">
+                        <div class="recent-course p-2 row">
+                            <div class="col-1 p-0">
+                                <img src="/images/icons/card.png" alt="Icon">
+                            </div>
+                            <div class="col-10 p-0">
+                                <h6 class="mb-1">@course.Title</h6>
+                                <span class="fw-bold course-info m-0 text-secondary">
+                                    Học phần • @course.Flashcards.Count terms 
+                                    • Tác giả: @(course.UserId == UserManager.GetUserId(User) ? "bạn" : course.Username)
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
         </div>
-    </div>
+    }
 
     <!-- Bộ thẻ ghi nhớ phổ biến -->
     <div class="mt-5">
