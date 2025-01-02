@@ -100,7 +100,10 @@ namespace SmartCards.Repositories
 
         public async Task<Course?> GetByIdAsync(int id)
         {
-            return await _context.Courses.Include(x => x.Flashcards).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Courses
+                .Include(x => x.User)
+                .Include(x => x.Flashcards)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
