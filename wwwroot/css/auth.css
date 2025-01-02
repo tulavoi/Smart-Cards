@@ -1,3 +1,6 @@
+
+/* CSS này cho trang login, signup */
+
 /* Tạo một background màu gradient hấp dẫn cho trang */
 body.auth-page {
     background: linear-gradient(to right, #6a11cb, #2575fc);

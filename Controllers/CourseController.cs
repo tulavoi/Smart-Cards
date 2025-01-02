@@ -11,6 +11,7 @@ using SmartCards.Models;
 namespace SmartCards.Controllers
 {
 	[Authorize]
+    [Route("/course")]
 	public class CourseController : BaseController
 	{
 		private readonly IPermissionRepository _permissionRepo;
@@ -25,7 +26,7 @@ namespace SmartCards.Controllers
             _courseRepo = courseRepo;
         }
 
-        //[Route("/create-course")]
+        [Route("/create-course")]
         public async Task<IActionResult> Create()
 		{
             ViewBag.EditPermissions = await _permissionRepo.GetAllAsync(new PermissionQueryObject { IsEdit = true });
@@ -35,7 +36,7 @@ namespace SmartCards.Controllers
 			return View();
 		}
 
-        [HttpPost]
+        [HttpPost("/create-course")]
         public async Task<IActionResult> Create(CreateCourseRequestDTO courseDTO)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -55,6 +56,7 @@ namespace SmartCards.Controllers
 
         // Trả về Html của PartialView
         [HttpGet]
+        [Route("GetTermDefinitionPartial")]
         public async Task<IActionResult> GetTermDefinitionPartial([FromQuery] int count, [FromQuery] string termValue, 
             [FromQuery] string defiValue, [FromQuery] int termLanguageId, [FromQuery] int defiLanguageId)
         {

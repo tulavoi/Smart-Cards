@@ -1,5 +1,9 @@
+using api.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartCards.DTOs.Course;
+using SmartCards.Interfaces;
+using SmartCards.Mappers;
 using SmartCards.Models;
 using System.Diagnostics;
 
@@ -9,15 +13,24 @@ namespace SmartCards.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICourseRepository _courseRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICourseRepository courseRepo)
         {
             _logger = logger;
+            _courseRepo = courseRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var courses = await _courseRepo.GetAllAsync(new CourseQueryObject
+            {
+                SortBy = "CreatedAt",
+                IsDecsending = true,
+                MaxItem = 4
+            });
+            var coursesDTO = courses.Select(c => c.ToCourseDTO()).ToList();
+            return View(coursesDTO);
         }
 
         public IActionResult Privacy()

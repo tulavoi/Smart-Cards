@@ -1,0 +1,69 @@
+﻿
+/* CSS này cho trang Home */
+
+/* Tiêu đề */
+.section-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Bộ thẻ phổ biến */
+.popular-item {
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Khi hover lên phần tử popular-item */
+.popular-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Phần thông tin tác giả */
+.author {
+    font-size: 12px;        
+    color: var(--grey-color);
+}
+
+/* Học phần gần đây */
+.recent-course {
+    display: flex;                  
+    align-items: center;            
+    justify-content: flex-start;
+    border-radius: 7px;           
+}
+
+/* Khi hover lên phần tử học phần gần đây */
+.recent-course:hover {
+    background: #f6f7fb;
+}
+
+/* Thông tin học phần trong phần gần đây */
+.recent-course .col-10, .col-1 {
+    display: flex;               
+    flex-direction: column;      
+    justify-content: flex-start;  
+    align-items: flex-start;
+}
+
+.recent-course .col-10{
+    margin-left: 5px;
+}
+
+/* Tiêu đề của học phần trong phần gần đây */
+.recent-course .col-10 h6 {
+    font-size: small; 
+    font-weight: 700;
+}
+
+/* Hình ảnh của học phần trong phần gần đây */
+.recent-course img {
+    background: #f6f7fb;    
+    border-radius: 5px;
+    padding: 7px; 
+    max-width: 35px;
+}
+
+.course-info {
+    font-size: 13px;
+}

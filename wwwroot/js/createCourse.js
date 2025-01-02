@@ -13,7 +13,7 @@
         const defiLanguageId = document.querySelector('#btn-choose-language[data-type="definition"]').value;
 
         try {
-            const respone = await fetch(`/Course/GetTermDefinitionPartial?count=${count}&termValue=&defiValue=
+            const respone = await fetch(`/course/GetTermDefinitionPartial?count=${count}&termValue=&defiValue=
                                          &termLanguageId=${termLanguageId}&defiLanguageId=${defiLanguageId}`);
 
             const newCard = await respone.text();
@@ -225,7 +225,7 @@
 
     async function createTermsSectionHtml(key, value, count) {
         // Lấy ra partialview
-        const respone = await fetch(`/Course/GetTermDefinitionPartial?count=${count+1}
+        const respone = await fetch(`/course/GetTermDefinitionPartial?count=${count+1}
             &termValue=${key}&defiValue=${value}`);
         const newCard = await respone.text();
 

@@ -1,8 +1,69 @@
-﻿@{
-    ViewData["Title"] = "Home | SmartCards";
-}
+﻿@using Microsoft.AspNetCore.Identity
+@using SmartCards.Areas.Identity.Data
+@using SmartCards.DTOs.Course
+@model List<CourseDTO>
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    ViewData["Title"] = "Học phần của bạn | SmartCards";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" />
+}
+<div class="container my-4">
+    <!-- Học phần gần đây -->
+    @if (Model.Count > 0)
+    {
+        <div>
+            <h5 class="section-title">Gần đây</h5>
+            <div class="row gy-2">
+                @foreach (var course in Model)
+                {
+                    <a class="col-md-6 btn" asp-controller="Practice" asp-action="Index" asp-route-slug="@course.Slug">
+                        <div class="recent-course p-2 row">
+                            <div class="col-1 p-0">
+                                <img src="/images/icons/card.png" alt="Icon">
+                            </div>
+                            <div class="col-10 p-0">
+                                <h6 class="mb-1">@course.Title</h6>
+                                <span class="fw-bold course-info m-0 text-secondary">
+                                    Học phần • @course.Flashcards.Count terms 
+                                    • Tác giả: @(course.UserId == UserManager.GetUserId(User) ? "bạn" : course.Username)
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Bộ thẻ ghi nhớ phổ biến -->
+    <div class="mt-5">
+        <h5 class="section-title">Bộ thẻ ghi nhớ phổ biến</h5>
+        <div class="row gy-3">
+            <div class="col-md-4">
+                <div class="popular-item p-3">
+                    <h6>matematica</h6>
+                    <p class="term-count">15 thuật ngữ</p>
+                    <p class="author">quizlette727480 • Giáo viên</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="popular-item p-3">
+                    <h6>SMARTER TGATI 2024 VOCAB</h6>
+                    <p class="term-count">896 thuật ngữ</p>
+                    <p class="author">GATENGCOOLCOOLI • Giáo viên</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="popular-item p-3">
+                    <h6>Thanksgiving Trivia</h6>
+                    <p class="term-count">27 thuật ngữ</p>
+                    <p class="author">alexa-08</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

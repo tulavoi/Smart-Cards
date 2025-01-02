@@ -7,19 +7,11 @@ using SmartCards.Interfaces;
 namespace SmartCards.Controllers
 {
 	[Authorize]
+	[Route("/practice")]
 	public class PracticeController : Controller
 	{
-		private readonly IPermissionRepository _permissionRepo;
-		private readonly ILanguageRepository _languageRepo;
-
-        public PracticeController(IPermissionRepository permissionRepo,
-            ILanguageRepository languageRepo)
-        {
-            _permissionRepo = permissionRepo;
-            _languageRepo = languageRepo;
-        }
-
-		public async Task<IActionResult> Index()
+		[HttpGet("{slug}")]
+		public async Task<IActionResult> Index([FromRoute] string slug)
 		{
             
 			return View();
