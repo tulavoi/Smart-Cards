@@ -1,0 +1,10 @@
+﻿@{
+    var message = TempData["ErrorMessage"] as string;
+}
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="custom-alert mb-4" >
+        @message
+    </div>
+}
+@*bạn cần  hai thẻ, một ngôn ngữ cho thuật ngữ và một ngôn ngữ cho định nghĩa để tạo một học phần*@

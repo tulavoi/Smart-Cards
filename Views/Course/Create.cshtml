@@ -27,7 +27,8 @@
 
         <!-- Input Title -->
         <div class="mb-3">
-            <input type="text" asp-for="@Model.Title" class="form-control border-0 rounded-3" style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"'>
+            <input type="text" asp-for="@Model.Title" class="form-control border-0 rounded-3"
+                   style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"' autocomplete="off">
         </div>
 
         <!-- Input Description -->
@@ -37,17 +38,17 @@
         </div>
 
         <!-- Button Options -->
-        <div class="row justify-content-between">
-            <div class="col-8 mb-4 d-flex gap-3">
+        <div class="row justify-content-between mb-3">
+            <div class="col-8 d-flex gap-3">
                 <button type="button" class="btn btn-outline-secondary" id="open-import-flashcards">
                     <i class="fa-solid fa-plus"></i> Nhập
                 </button>
 
                 <button class="btn btn-outline-secondary"><i class="fa-solid fa-plus"></i> Thêm sơ đồ</button>
-                <button class="btn btn-outline-secondary">Tạo từ ghi chú</button>
+                @* <button class="btn btn-outline-secondary">Tạo từ ghi chú</button> *@
             </div>
 
-            <div class="col-4 mb-4 gap-3 d-flex justify-content-end">
+            <div class="col-4 gap-3 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline-secondary circle-button rounded-circle" data-bs-toggle="modal" data-bs-target="#course-setting-modal">
                     <i class="fa-solid fa-gear"></i>
                 </button>
@@ -60,21 +61,39 @@
         </div>
 
         <!-- Thông báo lỗi ở đây -->
-        <div id="error-message">
+        <div id="error-message" class="d-flex justify-content-center">
+            @await Html.PartialAsync("ViewPartials/_ErrorMessagePartial")
         </div>
 
         <!-- Terms and Definitions -->
         <div id="terms-section">
-            @for(int i = 1; i < 6; i++)
+            @if (Model?.Flashcards != null)
             {
-                @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial", new
+                for (int i = 1; i <= Model.Flashcards.Count; i++)
                 {
-                    count = i,
-                    termValue = "",
-                    defiValue = "",
-                    termLanguageId = 0,
-                    defiLanguageId = 0,
-                })
+                    @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial", new
+                        {
+                            count = i,
+                            termValue = Model.Flashcards[i - 1]?.Term ?? "",
+                            defiValue = Model.Flashcards[i - 1]?.Definition ?? "",
+                            termLanguageId = 0,
+                            defiLanguageId = 0,
+                        })
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= 2; i++)
+                {
+                    @await Html.PartialAsync("ViewPartials/_TermDefinitionPartial", new
+                        {
+                            count = i,
+                            termValue = "",
+                            defiValue = "",
+                            termLanguageId = 0,
+                            defiLanguageId = 0,
+                        })
+                }
             }
         </div>
 
