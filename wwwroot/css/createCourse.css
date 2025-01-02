@@ -196,3 +196,16 @@ textarea {
     font-size: small;
 }
 
+/* Thông báo lỗi */
+.custom-alert {
+    border: .125rem solid var(--error-message-alert);
+    color: var(--error-message-alert);
+    padding: .75rem;
+    text-transform: uppercase;
+    width: 60%;
+    text-align: center;
+    font-weight: 500;
+    font-size: .75rem;
+    letter-spacing: .0625rem;
+    line-height: 1.333333333333333;
+}

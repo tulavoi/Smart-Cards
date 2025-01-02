@@ -17,8 +17,10 @@ namespace SmartCards.Models
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 		public int CourseId { get; set; }
         public Course? Course { get; set; }
+        [Required]
         public int Term_LangId { get; set; }
         public Language? Term_Lang { get; set; }
+        [Required]
         public int Definition_LangId { get; set; }
         public Language? Definition_Lang { get; set; }
     }
