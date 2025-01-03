@@ -5,9 +5,12 @@
     document.querySelector('.add-card').addEventListener('click', addNewCard);
 
     async function addNewCard() {
-        const termItems = document.querySelectorAll('.term-item'); // Lấy tất cả term-item hiện có
-        console.log(termItems.length);
-        const count = termItems.length + 1; // Lấy số thứ tự mới (bằng tổng số term-item hiện tại + 1)
+        // Lấy tất cả các .term-item đang hiển thị
+        const visibleTermItems = Array.from(document.querySelectorAll('.term-item')).filter(item => {
+            return item.offsetParent !== null; // Kiểm tra xem phần tử có đang hiển thị không
+        });
+
+        const count = visibleTermItems.length; // Lấy count dựa trên số lượng term-item hiển thị
 
         const termLanguageId = document.querySelector('#btn-choose-language[data-type="term"]').value;
         const defiLanguageId = document.querySelector('#btn-choose-language[data-type="definition"]').value;
@@ -85,7 +88,28 @@
         }
     });
 
+    // Cập nhật placeholder của termDefiTextarea dựa trên các giá trị separator và tag separator đã chọn
+    function updatePlaceholder() {
+        // Lấy giá trị separator và tagSeparator từ các lựa chọn
+        const separator = getSeparatorValue();
+        const tagSeparator = getTagSeparatorValue();
+
+        // Tạo mảng các terms và định nghĩa của chúng, sử dụng separator giữa thuật ngữ và định nghĩa
+        const terms = [
+            `Từ 1${separator}Định nghĩa 1`,
+            `Từ 2${separator}Định nghĩa 2`,
+            `Từ 3${separator}Định nghĩa 3`
+        ];
+
+        // Cập nhật placeholder của termDefiTextarea bằng cách nối các terms với tagSeparator
+        termDefiTextarea.placeholder = terms.join(tagSeparator);
+
+        // Cập nhật lại preview sau khi placeholder được cập nhật
+        updatePreview();
+    }
+
     function getSeparatorValue() {
+        // Lấy giá trị của input đã được chọn trong nhóm "separator"
         const selectedSepaator = document.querySelector('input[name="separator"]:checked').id;
         if (selectedSepaator == "custom") return customSeparator?.value || "\t"
         if (selectedSepaator == "tab") return "\t"
@@ -93,35 +117,24 @@
     }
 
     function getTagSeparatorValue() {
+        // Lấy giá trị của input đã được chọn trong nhóm "tag-separator"
         const selectedTagSepaator = document.querySelector('input[name="tag-separator"]:checked').id;
         if (selectedTagSepaator == "custom-tags") return customTagSeparator?.value || "\n"
         if (selectedTagSepaator == "newline") return "\n"
         return ";";
     }
 
-    function updatePlaceholder() {
-        const separator = getSeparatorValue();
-        const tagSeparator = getTagSeparatorValue();
-
-        const terms = [
-            `Từ 1${separator}Định nghĩa 1`,
-            `Từ 2${separator}Định nghĩa 2`,
-            `Từ 3${separator}Định nghĩa 3`
-        ];
-
-        termDefiTextarea.placeholder = terms.join(tagSeparator);
-        updatePreview();
-    }
-
+    // Cập nhật preview (xem trước) dựa trên giá trị nhập vào trong termDefiTextarea
     function updatePreview() {
         const input = termDefiTextarea.value.trim();
+
         if (!input) resetPreviewItems();
 
         const separator = getSeparatorValue();
         const tagSeparator = getTagSeparatorValue();
-        const map = convertInputToMap(input, separator, tagSeparator);
+        const map = convertInputToMap(input, separator, tagSeparator); 
 
-        termDefinitionMap = map;
+        termDefinitionMap = map; // Lưu map vào biến termDefinitionMap để sử dụng ở hàm khác
 
         if (input) renderPreviewItems(map);
     }
@@ -142,6 +155,7 @@
             fullHtml += createPreviewItemsHtml(key, value, count);
             count++;
         }
+
         previewItems.innerHTML = fullHtml;
         nonePreviewItems.style.display = "none";
         countCard.textContent = `${map.size} thẻ`;
@@ -177,10 +191,12 @@
 
     function convertInputToMap(input, separator, tagSeparator) {
         const map = new Map();
+
+        // Tách input thành các phần tử, mỗi phần tử là một cặp key-value
         const pairs = input.split(tagSeparator);
 
         for (let i = 0; i < pairs.length; i++) {
-            const part = pairs[i].split(separator);
+            const part = pairs[i].split(separator); // Tách mỗi cặp thành key-value dựa trên separator
             const key = part[0]?.trim() || "";
             const value = part[1]?.trim() || "";
             map.set(key, value);
@@ -188,11 +204,19 @@
         return map;
     }
 
+    // Lắng nghe sự kiện "input" trên termDefiTextarea và gọi hàm updatePreview khi nội dung thay đổi
     termDefiTextarea.addEventListener("input", updatePreview);
 
+    // Lặp qua tất cả các input có tên 'separator' và lắng nghe sự kiện "change" để gọi hàm updatePlaceholder khi người dùng thay đổi lựa chọn phân tách
     separatorInputs.forEach(input => input.addEventListener("change", updatePlaceholder));
+
+    // Lặp qua tất cả các input có tên 'tag-separator' và lắng nghe sự kiện "change" để gọi hàm updatePlaceholder khi người dùng thay đổi lựa chọn phân tách thẻ
     tagSeparatorInputs.forEach(input => input.addEventListener("change", updatePlaceholder));
+
+    // Nếu có customTagSeparator, lắng nghe sự kiện "input" để gọi hàm updatePlaceholder khi người dùng thay đổi giá trị
     if (customTagSeparator) customTagSeparator.addEventListener("input", updatePlaceholder);
+
+    // Nếu có customSeparator, lắng nghe sự kiện "input" để gọi hàm updatePlaceholder khi người dùng thay đổi giá trị
     if (customSeparator) customSeparator.addEventListener("input", updatePlaceholder);
 
     updatePlaceholder();
@@ -204,7 +228,7 @@
 
         if (termDefinitionMap.size == 0 || ![...termDefinitionMap.keys()].length) return;
 
-        // Xóa các input cũ trong terms-section 
+        // Xóa các term-item cũ trong terms-section 
         termsSection.innerHTML = '';
 
         renderTermsSection(termDefinitionMap);
@@ -215,6 +239,7 @@
         var count = 0;
 
         for (const [key, value] of map) {
+            console.log(key);
             fullHtml += await createTermsSectionHtml(key, value, count);
             count++;
         }
@@ -224,9 +249,13 @@
     }
 
     async function createTermsSectionHtml(key, value, count) {
+        // Mã hóa key và value để tránh mất các dấu (+,...)
+        const encodedKey = encodeURIComponent(key);
+        const encodedValue = encodeURIComponent(value);
+
         // Lấy ra partialview
         const respone = await fetch(`/course/GetTermDefinitionPartial?count=${count+1}
-            &termValue=${key}&defiValue=${value}`);
+            &termValue=${encodedKey}&defiValue=${encodedValue}`);
         const newCard = await respone.text();
 
         return newCard;

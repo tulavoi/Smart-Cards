@@ -27,7 +27,7 @@
 
         <!-- Input Title -->
         <div class="mb-3">
-            <input type="text" asp-for="@Model.Title" class="form-control border-0 rounded-3"
+            <input type="text" asp-for="@Model.Title" name"Title" class="form-control border-0 rounded-3"
                    style="height:50px;" id="title" placeholder='Nhập tiêu đề, ví dụ "Sinh học - Chương 22: Tiến hóa"' autocomplete="off">
         </div>
 
@@ -49,12 +49,14 @@
             </div>
 
             <div class="col-4 gap-3 d-flex justify-content-end">
-                <button type="button" class="btn btn-outline-secondary circle-button rounded-circle" data-bs-toggle="modal" data-bs-target="#course-setting-modal">
+                <button type="button" class="btn btn-outline-secondary circle-button rounded-circle"
+                        data-bs-toggle="modal" data-bs-target="#course-setting-modal" title="Quản lý quyền truy cập">
                     <i class="fa-solid fa-gear"></i>
                 </button>
                 @await Html.PartialAsync("ViewPartials/_CourseSettingModal")
 
-                <button type="button" class="btn btn-outline-secondary circle-button rounded-circle">
+                <button type="button" class="btn btn-outline-secondary circle-button rounded-circle" 
+                        id="btn-reverse-term" title="Lật thuật ngữ và định nghĩa">
                     <i class="fa-solid fa-right-left"></i>
                 </button>
             </div>
@@ -76,8 +78,8 @@
                             count = i,
                             termValue = Model.Flashcards[i - 1]?.Term ?? "",
                             defiValue = Model.Flashcards[i - 1]?.Definition ?? "",
-                            termLanguageId = 0,
-                            defiLanguageId = 0,
+                            termLanguageId = Model.Flashcards[i - 1]?.TermLanguageId ?? 0,
+                            defiLanguageId = Model.Flashcards[i - 1]?.DefiLanguageId ?? 0,
                         })
                 }
             }
